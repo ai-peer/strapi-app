@@ -1,6 +1,7 @@
 export default {
   routes: [
     {
+      name: "count",
       method: "GET",
       path: "/articles/count",
       handler: "article.count",
