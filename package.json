@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@strapi/plugin-documentation": "^4.5.4",
+    "@strapi/plugin-graphql": "^4.5.4",
     "@strapi/plugin-i18n": "4.5.4",
     "@strapi/plugin-users-permissions": "4.5.4",
     "@strapi/strapi": "^4.5.4",
@@ -22,7 +23,8 @@
     "strapi-plugin-country-select": "^1.0.0",
     "strapi-plugin-local-image-sharp": "^1.2.0",
     "strapi-plugin-menus": "^1.2.0",
-    "strapi-plugin-rest-cache": "^4.2.5"
+    "strapi-plugin-rest-cache": "^4.2.5",
+    "strapi-plugin-transformer": "^2.1.1"
   },
   "author": {
     "name": "A Strapi developer"
