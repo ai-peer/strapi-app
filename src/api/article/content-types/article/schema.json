@@ -20,7 +20,7 @@
       "type": "richtext",
       "required": true
     },
-    "image": {
+    "logo": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -32,6 +32,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "user_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "articles"
     }
   }
