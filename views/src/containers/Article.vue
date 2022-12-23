@@ -45,7 +45,7 @@ export default {
   apollo: {
     article: {
       query: gql`
-        query Articles($id: ID!) {
+        query Article($id: ID!) {
           article(id: $id) {
             id
             title

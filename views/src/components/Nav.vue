@@ -37,10 +37,14 @@ export default {
   },
   apollo: {
     categories: gql`
-      query Categories {
-        categories {
-          id
-          name
+      query categorys {
+        categorys {
+          data{
+            id
+            attributes{
+              name
+            }
+          }
         }
       }
     `

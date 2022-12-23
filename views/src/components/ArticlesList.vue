@@ -73,9 +73,12 @@ export default {
       return Math.ceil(this.articles.length / 5);
     },
     leftArticles() {
+      console.info("===articles", this.articles);
       return this.articles.slice(0, this.leftArticlesCount);
     },
     rightArticles() {
+      console.info("===rightArticles", this.articles);
+
       return this.articles.slice(this.leftArticlesCount, this.articles.length);
     }
   }

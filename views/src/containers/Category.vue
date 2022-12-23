@@ -22,24 +22,25 @@ export default {
     };
   },
   components: {
-    ArticlesList
+    ArticlesList 
   },
   apollo: {
     category: {
       query: gql`
-        query Category($id: ID!) {
+        query category($id: ID!) {
           category(id: $id) {
-            name
-            articles {
+            data{
               id
-              title
-              content
-              image {
-                url
-              }
-              category {
-                id
+              attributes{
                 name
+                articles{
+                  data{
+                    id
+                    attributes{
+                      title
+                    }
+                  }
+                }
               }
             }
           }

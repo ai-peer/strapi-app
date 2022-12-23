@@ -1,11 +1,13 @@
 export default {
-  transformer: {
-    enabled: true,
+  graphql: {
     config: {
-      prefix: "/api/",
-      responseTransforms: {
-        removeAttributesKey: true,
-        removeDataKey: true,
+      endpoint: '/graphql',
+      shadowCRUD: true,
+      playgroundAlways: false,
+      depthLimit: 7,
+      amountLimit: 100,
+      apolloServer: {
+        tracing: false,
       },
     },
   },

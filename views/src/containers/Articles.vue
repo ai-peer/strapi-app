@@ -2,7 +2,7 @@
   <div>
     <div class="uk-section">
       <div class="uk-container uk-container-large">
-        <h1>Strapi blog</h1>
+        <h1>Strapi blog {{articles.length}}</h1>
 
         <ArticlesList :articles="articles"></ArticlesList>
       </div>
@@ -23,18 +23,65 @@ export default {
       articles: []
     };
   },
+  mounted(){
+      let res = gql`
+          {
+            articles {
+              data{
+                id
+                attributes{
+                  title
+                  content
+                  logo {
+                    data{
+                      attributes{
+                        url
+                      }
+                    }
+                  }
+                  category {
+                    data {
+                      id
+                      attributes{
+                        name
+                      }
+                    }
+                  }
+                }
+                
+              }
+            }
+          }
+        `
+      
+      console.info("mount========", res);
+  },
   apollo: {
     articles: gql`
-      query Article {
+      {
         articles {
-          id
-          title
-          content
-          image {
-            url
-          }
-          category {
-            name
+          data{
+            id
+            attributes{
+              title
+              content
+              logo {
+                data{
+                  attributes{
+                    url
+                  }
+                }
+              }
+              category {
+                data {
+                  id
+                  attributes{
+                    name
+                  }
+                }
+              }
+            }
+            
           }
         }
       }
