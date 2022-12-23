@@ -16,16 +16,17 @@ export default {
            */
           auth: false,
         },
-        "Query.article1": {
+        "Query.categorys": {
           /**
            * Querying the Restaurants content-type
            * requires the find permission
            * on the 'Address' content-type
            * of the 'Address' API
            */
-          auth: {
+          auth: false,
+  /*         auth: {
             scope: ["api::address.address.find"],
-          },
+          }, */
         },
       },
     });
