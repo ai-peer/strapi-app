@@ -34,7 +34,7 @@
       "target": "api::category.category",
       "inversedBy": "articles"
     },
-    "user_id": {
+    "userId": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",

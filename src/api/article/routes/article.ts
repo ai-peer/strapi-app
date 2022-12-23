@@ -15,7 +15,9 @@ export default factories.createCoreRouter("api::article.article", {
       policies: [],
       middlewares: [],
     },
-    findOne: {},
+    findOne: {
+      auth: false,
+    },
     create: {},
     update: {},
     delete: {},
