@@ -1,8 +1,12 @@
 import Koa from "koa";
+import { Context } from "koa";
+import graphqlAPI from "./extensions/graphql-api";
 import {
   transformGraphql,
   transformRest,
 } from "./extensions/graphql-transform";
+
+
 export default {
   /**
    * An asynchronous register function that runs before
@@ -20,9 +24,9 @@ export default {
         let body = ctx.body;
         try {
           if (typeof body == "object") {
-            ctx.body = transformGraphql(body);
+            //ctx.body = transformGraphql(body);
           } else if (typeof body == "string") {
-            ctx.body = transformGraphql(JSON.parse(body));
+            //ctx.body = transformGraphql(JSON.parse(body));
           }
         } catch (err) {
           console.warn("graphql error", err.message);
@@ -37,29 +41,73 @@ export default {
         return next();
       }
     });
-    const extensionService = strapi.plugin("graphql").service("extension");
+    graphqlAPI(strapi);
+   /*  const extensionService = strapi.plugin("graphql").service("extension");
     extensionService.use({
+      // GraphQL SDL
+      typeDefs: `
+          type Category {
+            id: String
+            name: String
+          }
+          type Article {
+            id: String
+            title: String
+            logo: String
+            content: String
+          }
+          type Query {
+             hello: String
+             cates: [Category]
+             artis: [Article]
+          }
+          
+          schema {
+            query: Query
+          }
+       `,
       resolvers: {
-        /*       Query: {
-          address: {
-            resolve() {
-              return { value: { city: 'Montpellier' } };
-            },
+        Query: {
+          hello(root, args, context) {
+            return "Hello world!";
           },
-        }, */
+          async cates(root, args, context) {
+            let ctx: Context = context.koaContext;
+            const list = await strapi.entityService.findMany(
+              "api::category.category",
+              {
+                //fields: ['title', 'description'],
+                //filters: { title: 'Hello World' },
+                //sort: { createdAt: 'DESC' },
+                //populate: { category: true },
+              }
+            );
+            console.info("cates", list);
+
+            return list.map((v) => {
+              return {
+                id: v.id,
+                name: v.name,
+              };
+            });
+          },
+        },
       },
       resolversConfig: {
+        "Query.hello": {
+          auth: false,
+        },
+        "Query.cates": {
+          auth: false,
+        },
         "Query.articles": {
           auth: false,
         },
         "Query.categorys": {
           auth: false,
-          /*         auth: {
-            scope: ["api::address.address.find"],
-          }, */
         },
       },
-    });
+    }); */
   },
 
   /**

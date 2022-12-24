@@ -42,6 +42,7 @@ export default {
   components: {
     VueMarkdownIt
   },
+
   apollo: {
     article: {
       query: gql`

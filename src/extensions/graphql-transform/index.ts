@@ -1,4 +1,4 @@
-/* let data = {
+let data = {
   data: {
     articles: {
       data: [
@@ -7,56 +7,56 @@
           attributes: {
             title: "demo1",
             content: "# title\ndemo1\n**demo1**\n\n_demo1_",
-            createdAt: "2022-12-23T09:59:46.347Z",
-            updatedAt: "2022-12-23T12:47:38.563Z",
-            publishedAt: "2022-12-23T10:02:40.958Z",
             logo: {
               data: {
-                //id: "1",
                 attributes: {
                   url: "/uploads/dog_6b884cec93.jpg",
+                  __typename: "UploadFile",
                 },
+                __typename: "UploadFileEntity",
               },
+              __typename: "UploadFileEntityResponse",
             },
             category: {
-              data: [
-                {
-                  id: "1",
-                  attributes: {
-                    name: "stripe",
-                  },
-                },
-                {
-                  id: "2",
-                  attributes: {
-                    name: "stripe2",
-                  },
-                },
-              ],
+              data: {
+                id: "1",
+                attributes: { name: "stripe", __typename: "Category" },
+                __typename: "CategoryEntity",
+              },
+              __typename: "CategoryEntityResponse",
             },
+            __typename: "Article",
           },
+          __typename: "ArticleEntity",
         },
       ],
+      __typename: "ArticleEntityResponseCollection",
     },
   },
 };
+
 let v = transformGraphql(data);
-console.info(JSON.stringify(v)); */
+console.info(JSON.stringify(v));
 /**
  * 格式化输出graphql数据
  * @param data
  */
 export function transformGraphql(data: any) {
   data = data.data;
-  let list: any[] = [];
+  let ret: any = {};
   for (let key in data) {
     let item0 = data[key];
-    let items = item0?.data || [];
-    for (let item of items) {
-      isNull(item) || list.push(transformGraphqlItem(item));
+    if (isUnit(item0)) {
+      ret[key] = item0;
+    } else {
+      let items = item0?.data || [];
+      ret[key] = ret[key] || [];
+      for (let item of items) {
+        isNull(item) || ret[key].push(transformGraphqlItem(item));
+      }
     }
   }
-  return { data: list };
+  return { data: ret };
 }
 function transformGraphqlItem(data: any) {
   if (isUnit(data)) return data;
@@ -75,6 +75,7 @@ function transformGraphqlItem(data: any) {
       hasId = true;
     }
     for (let key in data.attributes) {
+      if(/^__/i.test(key))continue;
       let attr = data.attributes[key];
       if (isNull(attr)) continue;
       let xf = typeof attr;
@@ -166,6 +167,7 @@ function transformRestItem(data) {
       hasId = true;
     }
     for (let key in data.attributes) {
+      if (/^__/i.test(key)) continue;
       let attr = data.attributes[key];
       if (!attr) continue;
       let xf = typeof attr;

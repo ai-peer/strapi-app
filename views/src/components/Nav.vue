@@ -4,14 +4,15 @@
       <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
           <li>
-            <a href="/">Strapi Blog </a>
+            <a href="/">Strapi Blog {{hello}}  </a>
           </li>
         </ul>
       </div>
 
       <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
-          <li v-for="category in categories" v-bind:key="category.id">
+         
+          <li v-for="category in categorys" v-bind:key="category.id">
             <router-link
               :to="{ path: '/category/' + category.id }"
               :key="category.id"
@@ -32,22 +33,37 @@ export default {
   name: "Nav",
   data() {
     return {
-      categories: []
+      categorys: [],
+      hello: ""
     };
   },
+  mounted(){
+  },
+  computed: {
+ 
+  },
   apollo: {
-    categories: gql`
-      query categorys {
-        categorys {
-          data{
-            id
-            attributes{
-              name
-            }
-          }
-        }
+    hello: {
+      query: gql`query {
+        hello
+      }`,
+      update: data => {
+        console.info("dat hello=======", data.hello);
+        return data.hello;
       }
-    `
+    },
+    categorys: {
+      query: gql`query {
+        cates {
+          id
+          name
+        }
+      }`,
+      update: data => {
+        console.info("dat categorys=======", data);
+        return data.cates;
+      }
+    }
   }
 };
 </script>

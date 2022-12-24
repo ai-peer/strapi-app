@@ -2,7 +2,7 @@
   <div>
     <div class="uk-section">
       <div class="uk-container uk-container-large">
-        <h1>Strapi blog {{articles.length}}</h1>
+        <h1>Strapi blog </h1>
 
         <ArticlesList :articles="articles"></ArticlesList>
       </div>
@@ -23,69 +23,42 @@ export default {
       articles: []
     };
   },
-  mounted(){
-      let res = gql`
-          {
-            articles {
-              data{
-                id
-                attributes{
-                  title
-                  content
-                  logo {
-                    data{
-                      attributes{
-                        url
-                      }
-                    }
-                  }
-                  category {
-                    data {
-                      id
-                      attributes{
-                        name
-                      }
-                    }
-                  }
-                }
-                
-              }
-            }
-          }
-        `
-      
-      console.info("mount========", res);
-  },
+  mounted() {},
   apollo: {
-    articles: gql`
-      {
-        articles {
-          data{
-            id
-            attributes{
-              title
-              content
-              logo {
-                data{
-                  attributes{
-                    url
+    articles: {
+      query: gql`query {
+          articles {
+            data {
+              id
+              attributes {
+                title
+                content
+                logo {
+                  data {
+                    attributes {
+                      url
+                    }
                   }
                 }
-              }
-              category {
-                data {
-                  id
-                  attributes{
-                    name
+                category {
+                  data {
+                    id
+                    attributes {
+                      name
+                    }
                   }
                 }
               }
             }
-            
           }
         }
+      `,
+      update: data => {
+        console.info("update==0", data);
+        return data.articles;
       }
-    `
+    },
+   
   }
 };
 </script>
