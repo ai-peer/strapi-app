@@ -27,35 +27,18 @@ export default {
   apollo: {
     articles: {
       query: gql`query {
-          articles {
-            data {
-              id
-              attributes {
-                title
-                content
-                logo {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
-                category {
-                  data {
-                    id
-                    attributes {
-                      name
-                    }
-                  }
-                }
-              }
-            }
+          artis {
+            id
+            title
+            content
+            logo
+            url
           }
         }
       `,
       update: data => {
         console.info("update==0", data);
-        return data.articles;
+        return data.artis;
       }
     },
    

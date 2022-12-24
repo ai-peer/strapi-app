@@ -5,7 +5,7 @@ export default {
   "Query.cates": {
     auth: false,
   },
-  "Query.articles": {
+  "Query.artis": {
     auth: false,
   },
   "Query.categorys": {
