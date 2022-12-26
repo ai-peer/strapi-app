@@ -11,18 +11,20 @@
     "format:ts": " prettier --write  \"src/**/*.ts\" "
   },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
-    "apollo-link": "^1.2.13",
-    "apollo-link-http": "^1.5.16",
+    "@apollo/client": "^3.7.3",
+    "@vue/apollo-option": "^4.0.0-alpha.20",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link": "^1.2.14",
+    "apollo-link-http": "^1.5.17",
     "core-js": "^3.6.4",
     "dayjs": "^1.11.7",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "vue": "^3.2.45",
-    "vue-apollo": "^3.0.3",
+    "vue-apollo": "^3.1.0",
     "vue-markdown-it": "^0.9.4",
-    "vue-router": "^3.1.5"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

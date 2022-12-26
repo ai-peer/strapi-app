@@ -1,24 +1,24 @@
 <!-- 我的页面 -->
 <template>
-   <Layout class="layout">
-      <Layout>
-         <Header :style="{ padding: 0 }" class="layout-header-bar">
-           adf
-         </Header>
-         <Content class="main-wrap">
+   <div>
+      <div>
+         <div :style="{ padding: 0 }" class="layout-header-bar">
+            <Nav></Nav>
+         </div>
+         <div class="main-wrap">
             <router-view></router-view>
-         </Content>
-      </Layout>
-   </Layout>
+         </div>
+      </div>
+   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》'
-
+import Nav from "./Nav.vue";
 export default {
    // import引入的组件需要注入到对象中才能使用
-   components: {  },
+   components: { Nav },
    data() {
       // 这里存放数据
       return {
@@ -34,7 +34,6 @@ export default {
    created() {},
    // 生命周期 - 挂载完成（可以访问DOM元素）
    async mounted() {
-      resetView();
    },
    beforeCreate() {}, // 生命周期 - 创建之前
    beforeMount() {}, // 生命周期 - 挂载之前

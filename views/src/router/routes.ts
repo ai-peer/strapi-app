@@ -16,6 +16,16 @@ const routes = [
             meta: {
                //requiresAuth: true, // 是否需要登录
             },
+         },
+         {
+            path: "/home2.html",
+            name: "home2",
+            title: "首页2",
+            component: () => import("../views/Home2.vue"),
+            //icon: 'icon-wujiaoxing',
+            meta: {
+               //requiresAuth: true, // 是否需要登录
+            },
          }
       ],
    },
@@ -28,7 +38,7 @@ const routes = [
       },
    }, */
    {
-      path: "*",
+      path: "/*",
       redirect: "/index",
    },
 ];

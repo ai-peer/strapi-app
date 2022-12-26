@@ -6,14 +6,15 @@
   },
   "include": [
     "./",
-    "./**/*.ts",
-    "./**/*.js",
+    "config/",
+    "src/",
     "src/**/*.json"
   ],
   "exclude": [
     "node_modules/",
     "build/",
     "dist/",
+    "views/",
     ".cache/",
     ".tmp/",
     "src/admin/",

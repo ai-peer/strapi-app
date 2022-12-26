@@ -12,10 +12,13 @@ export default class Article {
          //sort: { createdAt: 'DESC' },
          //populate: { category: true },
       });
+      console.info("list", list);
       return list.map((v) => {
          return {
             id: v.id,
-            name: v.name,
+            title: v.title,
+            content: v.content,
+            logo: v.logo,
          };
       });
    }

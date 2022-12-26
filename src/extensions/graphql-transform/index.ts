@@ -1,4 +1,4 @@
-let data = {
+/* let data = {
    data: {
       articles: {
          data: [
@@ -34,9 +34,7 @@ let data = {
       },
    },
 };
-
-let v = transformGraphql(data);
-console.info(JSON.stringify(v));
+ */
 /**
  * 格式化输出graphql数据
  * @param data

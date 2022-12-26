@@ -1,4 +1,4 @@
-import VueRouter from "vue-router";
+import { createRouter, createWebHistory} from "vue-router"
 //import cookies from "js-cookie";
 import config from "../config";
 import routes from "./routes";
@@ -17,33 +17,15 @@ function getRouter(path: string, routes: any): any {
   return undefined;
 }
 
-const routerPush = VueRouter.prototype.push;
-/* VueRouter.prototype.push = function push(location: any) {
-  try {
-    //if (location.path) location.path = location.path.replace(this.history.base, "");
-    let path = (location.path || location.name || "")
-      .replace(config.baseUrl, "")
-      .replace(/^[\/]{2,}/, "/");
-    let route = getRouter(path, this.options.routes);
-    console.info("route=-===", path, route, this.options.routes);
-    if (route) {
-      return routerPush
-        .call(this, { ...location, path: route.path })
-    } else if (/^https?:/i.test(location.path)) {
-      window.open(location.path);
-    }
-  } catch (err) {}
-}; */
-const router = new VueRouter({
-  mode: "history", //config.isDev ? "hash" : "history", //
-  base: baseUrl,
-  routes: routes,
+let router = createRouter({
+  history: createWebHistory(),
+  routes: routes
 });
 
 router.beforeEach(async (to, from, next) => {
   let isLogin = false;// = !!cookies.get("token-admin");
   console.info("isLogin===", isLogin, to.name);
-  if (to.name == "login") {
+/*   if (to.name == "login") {
     return isLogin ? next("/home.html") : next();
   }
   if (isLogin) {
@@ -53,8 +35,8 @@ router.beforeEach(async (to, from, next) => {
     next({
       name: "login", // 跳转到登录页
     });
-  }
-  //next();
+  } */
+  next();
 });
 
 router.afterEach((route) => {});
