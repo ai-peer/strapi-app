@@ -1,59 +1,30 @@
+
+
 <template>
-  <div id="app">
-    <Nav />
-    <router-view :key="$route.fullPath"></router-view>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
   </div>
+  <HelloWorld msg="Vite + Vue" />
 </template>
-
-<script>
-import Nav from "./components/Nav.vue";
-
-export default {
-  name: "App",
-  components: { Nav }
-};
+<script setup lang="ts">
+import HelloWorld from "./components/HelloWorld.vue";
+ 
 </script>
-
-<style lang="css">
-a {
-  text-decoration: none;
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
 }
-
-h1 {
-  font-family: Staatliches;
-  font-size: 120px;
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
-
-#category {
-  font-family: Staatliches;
-  font-weight: 500;
-}
-
-#title {
-  letter-spacing: 0.4px;
-  font-size: 22px;
-  font-size: 1.375rem;
-  line-height: 1.13636;
-}
-
-#banner {
-  margin: 20px;
-  height: 800px;
-}
-
-#editor {
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.75;
-}
-
-.uk-navbar-container {
-  background: #fff !important;
-  font-family: Staatliches;
-}
-
-img:hover {
-  opacity: 1;
-  transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>

@@ -1,14 +1,14 @@
 export default {
-  routes: [
-    {
-      method: "GET",
-      path: "/categories/count",
-      handler: "category.count",
-      config: {
-        policies: [],
+   routes: [
+      {
+         method: "GET",
+         path: "/categories/count",
+         handler: "category.count",
+         config: {
+            policies: [],
+         },
       },
-    },
-   /*  {
+      /*  {
       method: "GET",
       path: "/categories",
       handler: "category.find",
@@ -49,5 +49,5 @@ export default {
         policies: [],
       },
     }, */
-  ],
+   ],
 };

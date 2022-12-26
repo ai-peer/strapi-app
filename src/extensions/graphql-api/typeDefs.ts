@@ -1,4 +1,3 @@
-
 export default `
   type Category {
     id: String
@@ -19,4 +18,36 @@ export default `
   schema {
     query: Query
   }
+
+  mutation {
+    createArticle(
+      data: {
+        title: "title"
+        logo: "http://xxx.com/a.jpg"
+        content: "demoxxx"
+        category: 0
+    }) {
+      data {
+        title
+        logo
+        content
+        category
+      }
+    }
+    updateArticle(id: "1", data: { 
+      title: "Hello"
+      logo: ""
+      content: ""
+      category: 0 
+    }) {
+      data {
+        id
+        title
+        logo
+        content
+        category
+      }
+    }
+  }
+ 
 `;

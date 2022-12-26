@@ -1,15 +1,15 @@
 export default {
-  routes: [
-    {
-      name: "count",
-      method: "GET",
-      path: "/articles/count",
-      handler: "article.count",
-      config: {
-        policies: [],
+   routes: [
+      {
+         name: "count",
+         method: "GET",
+         path: "/articles/count",
+         handler: "article.count",
+         config: {
+            policies: [],
+         },
       },
-    },
-    /* {
+      /* {
       method: "GET",
       path: "/articles",
       handler: "article.find",
@@ -50,5 +50,5 @@ export default {
         policies: [],
       },
     }, */
-  ],
+   ],
 };
