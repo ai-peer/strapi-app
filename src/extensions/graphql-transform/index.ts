@@ -130,7 +130,6 @@ const ddd = {
  */
 export function transformRest(data: any) {
    data = data.data;
-   console.info("rest", data);
    if (data instanceof Array) {
       let list: any = [];
       for (let item of data) {

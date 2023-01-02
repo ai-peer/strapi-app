@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dicts",
+  "info": {
+    "singularName": "dict",
+    "pluralName": "dicts",
+    "displayName": "Dict"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
