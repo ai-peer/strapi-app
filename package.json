@@ -22,7 +22,7 @@
     "@strapi/plugin-graphql": "^4.5.4",
     "@strapi/plugin-i18n": "4.5.4",
     "@strapi/plugin-users-permissions": "4.5.4",
-    "@strapi/strapi": "^4.5.4",
+    "@strapi/strapi": "^4.5.5",
     "better-sqlite3": "7.4.6",
     "strapi-plugin-country-select": "^1.0.0",
     "strapi-plugin-local-image-sharp": "^1.2.0",

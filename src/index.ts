@@ -1,7 +1,7 @@
 import Koa from "koa";
 import { Context } from "koa";
 import graphqlAPI from "./extensions/graphql-api";
-import { transformGraphql, transformRest } from "./extensions/graphql-transform";
+import transformRest from "./utils/restformat";
 
 export default {
    /**
@@ -16,7 +16,7 @@ export default {
          if (/\.(js|css|html|jpg|jpeg|png|gif|ttf|wof*)$/i.test(ctx.url)) return next();
          if (/post/i.test(ctx.method) && /^\/graphql$/i.test(ctx.url)) {
             await next();
-            let body = ctx.body;
+            /*  let body = ctx.body;
             try {
                if (typeof body == "object") {
                   //ctx.body = transformGraphql(body);
@@ -25,7 +25,7 @@ export default {
                }
             } catch (err) {
                console.warn("graphql error", err.message);
-            }
+            } */
          } else if (/^\/api\//i.test(ctx.url)) {
             await next();
             let body = ctx.body;

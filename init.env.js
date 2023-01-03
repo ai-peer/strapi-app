@@ -28,5 +28,5 @@ function build() {
   writer.close();
 }
 
-console.info("sn", buildSecret());
+//console.info("sn", buildSecret());
 build();
