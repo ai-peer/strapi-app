@@ -1,21 +1,30 @@
 {
-   "compilerOptions": {
-      "target": "ESNext",
-      "useDefineForClassFields": true,
-      "module": "ESNext",
-      "moduleResolution": "Node",
-      "strict": true,
-      "experimentalDecorators": false,
-      "noUnusedParameters": false,
-      "jsx": "preserve",
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "esModuleInterop": true,
-      "lib": ["ESNext", "DOM"],
-      "skipLibCheck": true,
-      "noEmit": true,
-      "types": ["naive-ui/volar"]
-   },
-   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-   "references": [{ "path": "./tsconfig.node.json" }]
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "strict": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noUnusedLocals": false,
+    "strictNullChecks": false,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./src/*"]
+    },
+    "types": [
+      "vite/client",
+      "node",
+      "unplugin-icons/types/vue",
+      "naive-ui/volar",
+      "unplugin-vue-define-options/macros-global"
+    ]
+  },
+  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.vue", "src/**/*.tsx", "src/**/*.jsx"],
+  "exclude": ["node_modules", "dist"]
 }

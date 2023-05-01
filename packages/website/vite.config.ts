@@ -1,29 +1,61 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { defineConfig, loadEnv } from "vite";
+import { createViteProxy, getRootPath, getSrcPath, setupVitePlugins, viteDefine } from "./build";
+import { getServiceEnvConfig } from "./.env-config";
 import path from "path";
-// https://vitejs.dev/config/
-export default defineConfig({
-   plugins: [vue()],
-   // 起个别名，在引用资源时，可以用‘@/资源路径’直接访问
-   resolve: {
+
+export default defineConfig((configEnv) => {
+  const viteEnv = loadEnv(configEnv.mode, process.cwd()); // as unknown as ImportMetaEnv;
+
+  const rootPath = path.resolve(__dirname);
+  const srcPath = path.join(rootPath, "src");
+  console.info("rootpaht", rootPath);
+  const isOpenProxy = viteEnv.VITE_HTTP_PROXY === "Y";
+  const envConfig = getServiceEnvConfig(viteEnv);
+
+  return {
+    base: viteEnv.VITE_BASE_URL,
+    resolve: {
       alias: {
-         "@": path.resolve(__dirname, "src"),
-         "@coms": path.resolve(__dirname, "src/components"),
+        "~": rootPath,
+        "@": srcPath,
+        "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js",
       },
-   },
-   // 配置前端服务地址和端口
-   server: {
-      host: "0.0.0.0",
-      port: 8082,
-      // 是否开启 https
+    },
+    define: viteDefine,
+    plugins: setupVitePlugins(viteEnv),
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "./src/styles/scss/global.scss" as *;`,
+        },
+      },
+    },
+    server: {
       https: false,
-      proxy: {
-         "/api/": {
-            target: "http://localhost:80/api",
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, ""),
-         },
+      host: "0.0.0.0",
+      port: 3200,
+      open: false,
+      proxy: createViteProxy(isOpenProxy, envConfig),
+    },
+    optimizeDeps: {
+      include: [
+        "@antv/data-set",
+        "@antv/g2",
+        "@better-scroll/core",
+        "echarts",
+        "swiper",
+        "swiper/vue",
+        "vditor",
+        "wangeditor",
+        "xgplayer",
+      ],
+    },
+    build: {
+      reportCompressedSize: false,
+      sourcemap: false,
+      commonjsOptions: {
+        ignoreTryCatch: false,
       },
-   },
-   // 设置反向代理，跨域
+    },
+  };
 });

@@ -2,9 +2,9 @@ module.exports = {
   singleQuote: false, // 使用单引号
   trailingComma: "all", // 末尾需要逗号
   // 一行最多 140 字符
-  printWidth: 140,
+  printWidth: 120,
   // 使用 3 个空格缩进
-  tabWidth: 3,
+  tabWidth: 2,
   // 不使用缩进符，而使用空格
   useTabs: false,
   // 行尾需要有分号

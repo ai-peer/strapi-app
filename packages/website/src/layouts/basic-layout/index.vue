@@ -1,32 +1,60 @@
 <template>
-  <n-space vertical size="large">
-    <n-layout has-sider>
-      <n-layout-sider content-style="padding: 24px;">
-        海淀桥
-      </n-layout-sider>
-      <n-layout>
-        <n-layout-header>颐和园路</n-layout-header>
-        <n-layout-content content-style="padding: 24px;">
-          <router-view></router-view>
-        </n-layout-content>
-        <n-layout-footer>成府路</n-layout-footer>
-      </n-layout>
-    </n-layout>
-  </n-space>
+  <admin-layout
+    :mode="mode"
+    :scroll-mode="theme.scrollMode"
+    :scroll-el-id="app.scrollElId"
+    :full-content="app.contentFull"
+    :fixed-top="theme.fixedHeaderAndTab"
+    :header-height="theme.header.height"
+    :tab-visible="theme.tab.visible"
+    :tab-height="theme.tab.height"
+    :content-class="app.disableMainXScroll ? 'overflow-x-hidden' : ''"
+    :sider-visible="siderVisible"
+    :sider-collapse="app.siderCollapse"
+    :sider-width="siderWidth"
+    :sider-collapsed-width="siderCollapsedWidth"
+    :footer-visible="theme.footer.visible"
+    :fixed-footer="theme.footer.fixed"
+    :right-footer="theme.footer.right"
+  >
+    <template #header>
+      <global-header v-bind="headerProps" />
+    </template>
+    <template #tab>
+      <global-tab />
+    </template>
+    <template #sider>
+      <global-sider />
+    </template>
+    <global-content />
+    <template #footer>
+      <global-footer />
+    </template>
+  </admin-layout>
+  <n-back-top :key="theme.scrollMode" :listen-to="`#${app.scrollElId}`" class="z-100" />
+  <setting-drawer />
 </template>
 
-<style scoped>
-.n-layout-header,
-.n-layout-footer {
-  background: rgba(128, 128, 128, 0.2);
-  padding: 24px;
+<script setup lang="ts">
+import { AdminLayout } from "@soybeanjs/vue-materials";
+import { useAppStore, useThemeStore } from "@/store";
+import { useBasicLayout } from "@/composables";
+import { GlobalContent, GlobalFooter, GlobalHeader, GlobalSider, GlobalTab, SettingDrawer } from "../common";
+
+defineOptions({ name: "BasicLayout" });
+
+const app = useAppStore();
+const theme = useThemeStore();
+
+const { mode, headerProps, siderVisible, siderWidth, siderCollapsedWidth } = useBasicLayout();
+</script>
+
+<style lang="scss">
+#__SCROLL_EL_ID__ {
+  @include scrollbar(8px, #e1e1e1);
 }
 
-.n-layout-sider {
-  background: rgba(128, 128, 128, 0.3);
-}
-
-.n-layout-content {
-  background: rgba(128, 128, 128, 0.4);
+.dark #__SCROLL_EL_ID__ {
+  @include scrollbar(8px, #555);
 }
 </style>
