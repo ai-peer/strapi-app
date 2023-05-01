@@ -9,13 +9,13 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import Player from "xgplayer";
-
 const domRef = ref<HTMLElement>();
 const player = ref<Player>();
 
 function renderXgPlayer() {
   if (!domRef.value) return;
   const url = "https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4";
+  console.info("ele", domRef.value);
   player.value = new Player({
     el: domRef.value,
     url,

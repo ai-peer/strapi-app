@@ -4,7 +4,7 @@ import { getServiceEnvConfig } from "./.env-config";
 import path from "path";
 
 export default defineConfig((configEnv) => {
-  const viteEnv = loadEnv(configEnv.mode, process.cwd()); // as unknown as ImportMetaEnv;
+  const viteEnv: any = loadEnv(configEnv.mode, process.cwd()); // as unknown as ImportMetaEnv;
 
   const rootPath = path.resolve(__dirname);
   const srcPath = path.join(rootPath, "src");

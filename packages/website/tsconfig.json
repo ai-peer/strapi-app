@@ -25,6 +25,6 @@
       "unplugin-vue-define-options/macros-global"
     ]
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.vue", "src/**/*.tsx", "src/**/*.jsx"],
+  //"include": ["src/**/*.ts", "src/**/*.js", "src/**/*.vue", "src/**/*.tsx", "src/**/*.jsx"],
   "exclude": ["node_modules", "dist"]
 }
