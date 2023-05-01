@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - "v*"
-    branches:
-      - "mixnet/**"
 permissions:
   contents: write
 
@@ -49,6 +47,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
       - name: 打包镜像并推送
         uses: docker/build-push-action@v2
         with:
@@ -60,15 +59,15 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            "docker.io/mixnet/vanblog:${{ steps.appinfo.outputs.version }}"
-            "docker.io/mixnet/vanblog:latest"
+            "docker.io/mixnet/strapi:${{ steps.appinfo.outputs.version }}"
+            "docker.io/mixnet/strapi:latest"
       - name: 设置 Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install --global yarn
-      - name: generateReleaseNote
-        run: yarn run release-note
+      #- run: npm install --global yarn
+      #- name: generateReleaseNote
+      #  run: yarn run release-note
       #- name: Release
       #  uses: softprops/action-gh-release@v1
       #  with:

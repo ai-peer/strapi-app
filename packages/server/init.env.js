@@ -12,6 +12,7 @@ function buildSN(size = 24) {
 }
 
 function build() {
+  fs.rmSync(".env");
   let env = {
     HOST: "0.0.0.0",
     PORT: 80,
