@@ -11,12 +11,12 @@
     "format:ts": " prettier --write  \"src/**/*.(ts|js|vue)\" "
   },
   "dependencies": {
+    "naive-ui": "^2.34.3",
     "vue": "^3.2.45",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "naive-ui": "^2.34.3",
     "@types/node": "^18.16.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "npm-run-all": "^4.1.5",

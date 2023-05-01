@@ -1,59 +1,47 @@
 import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
-//import Antd from 'ant-design-vue'; // 引入组件库
+/* import Antd from 'ant-design-vue'; // 引入组件库
+import "ant-design-vue/dist/antd.css";
 import {
-   create,
-   useMessage,
-   useDialog,
-   NButton,
-   NForm,
-   NInput,
-   NCheckbox,
-   NMenu,
-   NLayout, //
-   NTable,
-   NSelect,
-   NDatePicker,
-   NSpin,
-   NSwitch,
-   NModal,
-} from "naive-ui";
+   Button,
+   message,
+   Form,
+   Input,
+   Checkbox,
+   Menu,
+   Layout, //
+   LayoutHeader,
+   LayoutFooter,
+   LayoutContent,
+   LayoutSider,
+   LayoutProps,
+   Table,
+   Select,
+   DatePicker,
+   Spin,
+   Switch,
+   Modal,
+} from "ant-design-vue"; */
+import naive from 'naive-ui'
+
 import router from "./router";
 import { setupI18n } from "./locales";
-import { userModel } from '../../../../../temp/soybean-admin/mock/model/auth';
 const app = createApp(App);
 
-app.config.globalProperties.$message = useMessage();
+//app.config.globalProperties.$message = message;
 //Object.assign(globalThis, )
-Object.assign(globalThis, {
+/* Object.assign(globalThis, {
    vm: {
-      message: useMessage(),
-      modal: useDialog(),
+      message: message,
+      modal: Modal,
    },
-});
-
+}); */
+app.use(naive);
 app.use(router);
 setupI18n(app);
-
-const naive = create({
-   components: [
-      NButton,
-      NForm,
-      NInput,
-      NCheckbox,
-      NMenu,
-      NLayout, //
-      NTable,
-      NSelect,
-      NDatePicker,
-      NSpin,
-      NSwitch,
-      NModal,
-   ],
-}); /* 
 // 添加常用组件
-app.use(Button)
+/* app.use(Button)
    .use(Form) //
    .use(Switch)
    .use(Input)
@@ -63,6 +51,6 @@ app.use(Button)
    .use(Table)
    .use(Select)
    .use(DatePicker)
-   .use(Spin); // 自动注册这些组件下的子组件 例如Button下的Button.Group */
-app.use(naive);
+   .use(Spin); */ // 自动注册这些组件下的子组件 例如Button下的Button.Group
+   //app.use(Antd);
 app.mount("#app");
