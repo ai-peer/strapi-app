@@ -2,7 +2,7 @@ module.exports = {
   singleQuote: false, // 使用单引号
   trailingComma: "all", // 末尾需要逗号
   // 一行最多 140 字符
-  printWidth: 180,
+  printWidth: 140,
   // 使用 3 个空格缩进
   tabWidth: 3,
   // 不使用缩进符，而使用空格

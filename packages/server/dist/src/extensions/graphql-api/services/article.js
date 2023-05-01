@@ -13,7 +13,6 @@ class Article {
         //sort: { createdAt: 'DESC' },
         //populate: { category: true },
         });
-        console.info("list", list);
         return list.map((v) => {
             return {
                 id: v.id,
