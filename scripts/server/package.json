@@ -10,7 +10,7 @@
     "build": "cross-env NODE_ENV=production strapi build",
     "strapi": "strapi",
     "format": "run-s format:*",
-    "format:ts": " prettier --write  \"src/**/*.ts\" \"src/**/*.js\" "
+    "format:ts": " prettier --write  \"src/**/*.(ts|js|css|vue)\" "
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
