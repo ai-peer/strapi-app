@@ -1,5 +1,5 @@
 import { getLoginModuleRegExp } from "@/utils";
-
+//import video from "./video";
 /** 根路由: / */
 export const ROOT_ROUTE: AuthRoute.Route = {
   name: "root",
@@ -73,6 +73,19 @@ export const constantRoutes: AuthRoute.Route[] = [
     meta: {
       title: "未找到",
       singleLayout: "blank",
+    },
+  },
+  {
+    name: "home",
+    path: "/home",
+    component: "self",
+    meta: {
+      title: "首页",
+      requiresAuth: false,
+      keepAlive: true,
+      singleLayout: "basic",
+      icon: "fluent:book-information-24-regular",
+      order: 1,
     },
   },
 ];

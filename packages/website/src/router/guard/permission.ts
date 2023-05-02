@@ -20,6 +20,11 @@ export async function createPermissionGuard(
     next({ path: from.fullPath, replace: true, query: from.query });
     return;
   }
+  
+  if(!to.meta.requiresAuth){
+    next();
+    return;
+  }
 
   const auth = useAuthStore();
   const isLogin = Boolean(localStg.get("token"));

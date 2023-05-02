@@ -70,7 +70,7 @@ declare namespace Service {
     /** 接口数据 */
     data: T;
     /** 接口消息 */
-    message: string;
+    message?: string;
   }
 
   /** mock的响应option */
