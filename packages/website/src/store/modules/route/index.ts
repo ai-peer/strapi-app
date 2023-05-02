@@ -17,6 +17,15 @@ import {
 } from "@/utils";
 import { useAuthStore } from "../auth";
 import { useTabStore } from "../tab";
+import { t } from "../../../locales";
+
+export function locale(menus: any[]) {
+  for (let menu of menus) {
+    menu.label = t(menu.label);
+    if (menu.children) locale(menu.children);
+  }
+  return menus;
+}
 
 interface RouteState {
   /**
@@ -85,6 +94,7 @@ export const useRouteStore = defineStore("route-store", {
      */
     handleAuthRoute(routes: AuthRoute.Route[]) {
       (this.menus as App.GlobalMenuOption[]) = transformAuthRouteToMenu(routes);
+      locale(this.menus);//本地化
       this.searchMenus = transformAuthRouteToSearchMenus(routes);
 
       const vueRoutes = transformAuthRouteToVueRoutes(routes);

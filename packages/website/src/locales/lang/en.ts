@@ -1,9 +1,13 @@
 import type { LocaleMessages } from "vue-i18n";
 
-const locale: LocaleMessages<I18nType.Schema> = {
+const locale = { //: LocaleMessages<I18nType.Schema>
+  menu: {
+    movie: "Movie",
+  },
   message: {
+
     system: {
-      title: "SoybeanAdmin",
+      title: "APP",
     },
     routes: {
       dashboard: {

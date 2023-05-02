@@ -17,7 +17,7 @@ const video: AuthRoute.Route[] = [
     path: "/video/movie",
     component: "self",
     meta: {
-      title: "电影",
+      title: "menu.movie",
       requiresAuth: false,
       keepAlive: true,
       singleLayout: "basic",

@@ -14,8 +14,8 @@ export function filterAuthRoutesByUserPermission(routes: AuthRoute.Route[], perm
 export function filterAuthRouteNoAuth(routes: AuthRoute.Route[]) {
   return <AuthRoute.Route[]>routes.filter((route) => {
     if (route.meta.requiresAuth == true) return false;
-    if (route.children) route.children = filterAuthRouteNoAuth(route.children);
-    if (route.children?.length < 1) {
+    if (route.children && route.children.length > 0) route.children = filterAuthRouteNoAuth(route.children);
+    if (!route.children || route.children.length < 1) {
       if (["basic"].includes(route.component)) return false;
     }
     return true;
