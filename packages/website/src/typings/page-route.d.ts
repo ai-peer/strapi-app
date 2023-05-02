@@ -72,8 +72,14 @@ declare namespace PageRoute {
     | 'plugin_swiper'
     | 'plugin_video'
     | 'video'
+    | 'video_anime'
+    | 'video_documentary'
     | 'video_home'
-    | 'video_search';
+    | 'video_movie'
+    | 'video_search'
+    | 'video_sport'
+    | 'video_tv'
+    | 'video_variety';
 
   /**
    * last degree route key, which has the page file
@@ -123,7 +129,13 @@ declare namespace PageRoute {
     | 'plugin_print'
     | 'plugin_swiper'
     | 'plugin_video'
+    | 'video_anime'
+    | 'video_documentary'
     | 'video_home'
+    | 'video_movie'
     | 'video_search'
+    | 'video_sport'
+    | 'video_tv'
+    | 'video_variety'
   >;
 }

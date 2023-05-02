@@ -46,6 +46,12 @@ export const views: Record<
   plugin_print: () => import('./plugin/print/index.vue'),
   plugin_swiper: () => import('./plugin/swiper/index.vue'),
   plugin_video: () => import('./plugin/video/index.vue'),
+  video_anime: () => import('./video/anime/index.vue'),
+  video_documentary: () => import('./video/documentary/index.vue'),
   video_home: () => import('./video/home/index.vue'),
-  video_search: () => import('./video/search/index.vue')
+  video_movie: () => import('./video/movie/index.vue'),
+  video_search: () => import('./video/search/index.vue'),
+  video_sport: () => import('./video/sport/index.vue'),
+  video_tv: () => import('./video/tv/index.vue'),
+  video_variety: () => import('./video/variety/index.vue')
 };

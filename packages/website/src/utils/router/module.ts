@@ -21,7 +21,13 @@ export function handleModuleRoutes(modules: AuthRoute.RouteModule) {
   Object.keys(modules).forEach((key) => {
     const item = modules[key].default;
     if (item) {
-      routes.push(item);
+      if (item instanceof Array) {
+        item.forEach((sitem) => {
+          routes.push(sitem);
+        });
+      } else {
+        routes.push(item);
+      }
     } else {
       window.console.error(`路由模块解析出错: key = ${key}`);
     }
