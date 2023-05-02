@@ -1,6 +1,7 @@
 import type { LocaleMessages } from "vue-i18n";
 
 const locale = {
+  language: "中文-简体",
   menu: {
     movie: "电影",
   },

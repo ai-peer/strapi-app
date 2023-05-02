@@ -45,8 +45,10 @@ defineOptions({ name: "BasicLayout" });
 
 const app = useAppStore();
 const theme = useThemeStore();
-
 const { mode, headerProps, siderVisible, siderWidth, siderCollapsedWidth } = useBasicLayout();
+
+app.init();
+
 </script>
 
 <style lang="scss">

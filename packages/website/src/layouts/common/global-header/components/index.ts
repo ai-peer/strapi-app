@@ -7,6 +7,7 @@ import ThemeMode from "./theme-mode.vue";
 import UserAvatar from "./user-avatar.vue";
 import SystemMessage from "./system-message.vue";
 import SettingButton from "./setting-button.vue";
+import LocaleSwitch from "./locale-switch.vue";
 
 export {
   MenuCollapse,
@@ -18,4 +19,5 @@ export {
   UserAvatar,
   SystemMessage,
   SettingButton,
+  LocaleSwitch,
 };

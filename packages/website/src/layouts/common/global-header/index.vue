@@ -11,6 +11,7 @@
       <!--github-site /-->
       <full-screen />
       <theme-mode />
+      <locale-switch />
       <system-message />
       <setting-button v-if="showButton" />
       <user-avatar v-if="auth.isLogin" />
@@ -33,6 +34,7 @@ import {
   SystemMessage,
   ThemeMode,
   UserAvatar,
+  LocaleSwitch
 } from "./components";
 
 defineOptions({ name: "GlobalHeader" });
