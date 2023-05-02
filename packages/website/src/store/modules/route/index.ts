@@ -4,6 +4,7 @@ import { fetchUserRoutes } from "@/service";
 import {
   localStg,
   filterAuthRoutesByUserPermission,
+  filterAuthRouteNoAuth,
   getCacheRoutes,
   getConstantRouteNames,
   transformAuthRouteToVueRoutes,
@@ -106,7 +107,7 @@ export const useRouteStore = defineStore("route-store", {
       router.addRoute(rootVueRoute);
     },
     /** 初始化动态路由 */
-    async initDynamicRoute() {
+    async initDynamicRoute(isLogin: boolean = false) {
       const { resetAuthStore } = useAuthStore();
       const { initHomeTab } = useTabStore();
 
@@ -131,11 +132,15 @@ export const useRouteStore = defineStore("route-store", {
       }
     },
     /** 初始化静态路由 */
-    async initStaticRoute() {
+    async initStaticRoute(isLogin: boolean = false) {
       const { initHomeTab } = useTabStore();
       const auth = useAuthStore();
+      let sroutes = staticRoutes;
+      if (!isLogin) {
+        sroutes = filterAuthRouteNoAuth(sroutes);
+      }
+      let routes = filterAuthRoutesByUserPermission(sroutes, auth.userInfo.userRole);
 
-      const routes = filterAuthRoutesByUserPermission(staticRoutes, auth.userInfo.userRole);
       this.handleAuthRoute(routes);
 
       initHomeTab(this.routeHomeName, router);
@@ -143,11 +148,11 @@ export const useRouteStore = defineStore("route-store", {
       this.isInitAuthRoute = true;
     },
     /** 初始化权限路由 */
-    async initAuthRoute() {
+    async initAuthRoute(isLogin: boolean = false) {
       if (this.authRouteMode === "dynamic") {
-        await this.initDynamicRoute();
+        await this.initDynamicRoute(isLogin);
       } else {
-        await this.initStaticRoute();
+        await this.initStaticRoute(isLogin);
       }
     },
 

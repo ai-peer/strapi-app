@@ -17,7 +17,7 @@ export async function createDynamicRouteGuard(
   // 初始化权限路由
   if (!route.isInitAuthRoute) {
     // 未登录情况下直接回到登录页，登录成功后再加载权限路由
-    if (!isLogin) {
+   /*  if (!isLogin) {
       const toName = to.name as AuthRoute.AllRouteKey;
       if (route.isValidConstantRoute(toName) && !to.meta.requiresAuth) {
         next();
@@ -26,9 +26,9 @@ export async function createDynamicRouteGuard(
         next({ name: routeName("login"), query: { redirect } });
       }
       return false;
-    }
+    } */
 
-    await route.initAuthRoute();
+    await route.initAuthRoute(isLogin);
 
     if (to.name === routeName("not-found")) {
       // 动态路由没有加载导致被not-found路由捕获，等待权限路由加载好了，回到之前的路由

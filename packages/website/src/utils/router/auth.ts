@@ -6,7 +6,21 @@
 export function filterAuthRoutesByUserPermission(routes: AuthRoute.Route[], permission: Auth.RoleType) {
   return routes.map((route) => filterAuthRouteByUserPermission(route, permission)).flat(1);
 }
-
+/**
+ * 根据用户权限,过滤需要登录的路由
+ * @param routes
+ * @returns
+ */
+export function filterAuthRouteNoAuth(routes: AuthRoute.Route[]) {
+  return <AuthRoute.Route[]>routes.filter((route) => {
+    if (route.meta.requiresAuth == true) return false;
+    if (route.children) route.children = filterAuthRouteNoAuth(route.children);
+    if (route.children?.length < 1) {
+      if (["basic"].includes(route.component)) return false;
+    }
+    return true;
+  });
+}
 /**
  * 根据用户权限过滤单个路由
  * @param route - 单个权限路由

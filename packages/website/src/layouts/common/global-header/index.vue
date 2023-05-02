@@ -6,20 +6,20 @@
       <global-breadcrumb v-if="theme.header.crumb.visible && !isMobile" />
     </div>
     <header-menu v-else />
-    <div class="flex justify-end h-full">
+    <div class="flex justify-end h-full mr-4">
       <global-search />
-      <github-site />
+      <!--github-site /-->
       <full-screen />
       <theme-mode />
       <system-message />
       <setting-button v-if="showButton" />
-      <user-avatar />
+      <user-avatar v-if="auth.isLogin" />
     </div>
   </dark-mode-container>
 </template>
 
 <script setup lang="ts">
-import { useThemeStore } from "@/store";
+import { useThemeStore, useAuthStore } from "@/store";
 import { useBasicLayout } from "@/composables";
 import GlobalLogo from "../global-logo/index.vue";
 import GlobalSearch from "../global-search/index.vue";
@@ -49,6 +49,7 @@ interface Props {
 defineProps<Props>();
 
 const theme = useThemeStore();
+const auth = useAuthStore();
 const { isMobile } = useBasicLayout();
 
 const showButton = import.meta.env.PROD && import.meta.env.VITE_VERCEL !== "Y";
