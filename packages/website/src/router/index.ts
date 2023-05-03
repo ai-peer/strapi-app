@@ -15,10 +15,11 @@ export const router = createRouter({
 });
 
 /** setup vue router. - [安装vue路由] */
-export async function setupRouter(app: App) {
+export function setupRouter(app: App) {
   app.use(router);
   createRouterGuard(router);
-  await router.isReady();
+  //router.isReady();
+  return router;
 }
 
 /** 路由名称 */

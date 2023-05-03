@@ -7,7 +7,7 @@ import { setupAssets } from "./plugins";
 import { setupStore } from "./store";
 import { setupI18n } from "./locales";
 
-async function setupApp() {
+export function setupApp() {
   // import assets: js、css
   setupAssets();
 
@@ -25,12 +25,18 @@ async function setupApp() {
   setupDirectives(app);
 
   // vue router
-  await setupRouter(app);
+  const router = setupRouter(app);
 
   setupI18n(app);
-
+  /* 
   // mount app
-  app.mount("#app");
+  router.isReady().then(() => {
+    app.mount("#app");
+  }); */
+  return {
+    app,
+    router,
+  };
 }
 
-setupApp();
+//setupApp();
