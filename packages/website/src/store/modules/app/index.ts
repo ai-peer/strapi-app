@@ -2,6 +2,7 @@ import { nextTick } from "vue";
 import { defineStore } from "pinia";
 import { SCROLL_EL_ID } from "@soybeanjs/vue-materials";
 import { langList, lang } from "../../../locales";
+import { localStg } from "@/utils";
 
 interface AppState {
   /** 滚动元素的id */
@@ -22,6 +23,7 @@ interface AppState {
   lang: string;
   /** 支持语言列表 */
   langs: { label: string; key: string }[];
+  isLogin: boolean;
 }
 export const useAppStore = defineStore("app-store", {
   state: (): AppState => ({
@@ -34,15 +36,18 @@ export const useAppStore = defineStore("app-store", {
     mixSiderFixed: false,
     lang: lang,
     langs: langList,
+    isLogin: false,
   }),
   actions: {
     async init() {
-      console.info("==========app init============");
+      console.info("==========app init============", localStg.get("token"));
+      const isLogin = Boolean(localStg.get("token"));
+      this.isLogin = isLogin;
       this.setLang(lang, langList);
     },
     setLang(lang: string = navigator.language) {
       this.lang = lang;
-      localStorage.setItem("lang", lang);
+      localStg.set("lang", lang);
     },
     getLang() {
       return this.lang;

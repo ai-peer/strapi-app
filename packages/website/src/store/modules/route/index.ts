@@ -14,6 +14,7 @@ import {
   transformRouteNameToRoutePath,
   transformRoutePathToRouteName,
   sortRoutes,
+  isLogin,
 } from "@/utils";
 import { useAuthStore } from "../auth";
 import { useTabStore } from "../tab";
@@ -93,8 +94,8 @@ export const useRouteStore = defineStore("route-store", {
      * @param routes - 权限路由
      */
     handleAuthRoute(routes: AuthRoute.Route[]) {
-      let useMenu = filterAuthRouteNoAuth(routes);
-      (this.menus as App.GlobalMenuOption[]) = transformAuthRouteToMenu(useMenu);
+      let useRoutes = isLogin() ? routes : filterAuthRouteNoAuth(routes);
+      (this.menus as App.GlobalMenuOption[]) = transformAuthRouteToMenu(useRoutes);
       locale(this.menus); //本地化
       this.searchMenus = transformAuthRouteToSearchMenus(routes);
 
@@ -118,7 +119,7 @@ export const useRouteStore = defineStore("route-store", {
       router.addRoute(rootVueRoute);
     },
     /** 初始化动态路由 */
-    async initDynamicRoute(isLogin: boolean = false) {
+    async initDynamicRoute() {
       const { resetAuthStore } = useAuthStore();
       const { initHomeTab } = useTabStore();
 
@@ -143,7 +144,7 @@ export const useRouteStore = defineStore("route-store", {
       }
     },
     /** 初始化静态路由 */
-    async initStaticRoute(isLogin: boolean = false) {
+    async initStaticRoute() {
       const { initHomeTab } = useTabStore();
       const auth = useAuthStore();
       let sroutes = staticRoutes;
