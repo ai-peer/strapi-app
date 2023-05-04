@@ -18,17 +18,17 @@
     :right-footer="theme.footer.right"
   >
     <template #header>
-      <global-header v-bind="headerProps" />
+      <global-header v-if="!app.inSSR" v-bind="headerProps" />
     </template>
     <template #tab>
-      <global-tab />
+      <global-tab v-if="!app.inSSR"/>
     </template>
     <template #sider>
-      <global-sider />
+      <global-sider v-if="!app.inSSR"/>
     </template>
     <global-content />
     <template #footer>
-      <global-footer />
+      <global-footer v-if="!app.inSSR"/>
     </template>
   </admin-layout>
   <n-back-top :key="theme.scrollMode" :listen-to="`#${app.scrollElId}`" class="z-100" />
@@ -36,18 +36,18 @@
 </template>
 
 <script setup lang="ts">
-import { AdminLayout } from "@soybeanjs/vue-materials";
 import { useAppStore, useThemeStore } from "@/store";
+const app = useAppStore();
+app.init();
+import { AdminLayout } from "@soybeanjs/vue-materials";
 import { useBasicLayout } from "@/composables";
 import { GlobalContent, GlobalFooter, GlobalHeader, GlobalSider, GlobalTab, SettingDrawer } from "../common";
 
 defineOptions({ name: "BasicLayout" });
 
-const app = useAppStore();
 const theme = useThemeStore();
 const { mode, headerProps, siderVisible, siderWidth, siderCollapsedWidth } = useBasicLayout();
 
-app.init();
 
 </script>
 

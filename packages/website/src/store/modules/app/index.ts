@@ -24,6 +24,7 @@ interface AppState {
   /** 支持语言列表 */
   langs: { label: string; key: string }[];
   isLogin: boolean;
+  inSSR: boolean;
 }
 export const useAppStore = defineStore("app-store", {
   state: (): AppState => ({
@@ -37,12 +38,14 @@ export const useAppStore = defineStore("app-store", {
     lang: lang,
     langs: langList,
     isLogin: false,
+    inSSR: false,
   }),
   actions: {
     async init() {
       console.info("==========app init============", localStg.get("token"));
       const isLogin = Boolean(localStg.get("token"));
       this.isLogin = isLogin;
+      this.inSSR = import.meta.env.SSR;
       this.setLang(lang, langList);
     },
     setLang(lang: string = navigator.language) {
