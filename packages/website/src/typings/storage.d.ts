@@ -19,5 +19,6 @@ declare namespace StorageInterface {
     /** 多页签路由信息 */
     multiTabRoutes: App.GlobalTabRoute[];
     lang: string;
+    token: string;
   }
 }

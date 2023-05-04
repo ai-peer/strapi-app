@@ -23,11 +23,11 @@ function createLocalStorage<T extends StorageInterface.Local = StorageInterface.
       expire: expire !== null ? new Date().getTime() + expire * 1000 : null,
     };
     const json = encrypto(storageData);
-    localStorage.setItem(key as string, json);
+    storage.setItem(key as string, json);
   }
 
   function get<K extends keyof T>(key: K) {
-    const json = window.localStorage.getItem(key as string);
+    const json = storage.getItem(key as string);
     if (json) {
       let storageData: StorageData<T[K]> | null = null;
       try {
@@ -49,10 +49,10 @@ function createLocalStorage<T extends StorageInterface.Local = StorageInterface.
   }
 
   function remove(key: keyof T) {
-    window.localStorage.removeItem(key as string);
+    storage.removeItem(key as string);
   }
   function clear() {
-    window.localStorage.clear();
+    storage.clear();
   }
 
   return {
