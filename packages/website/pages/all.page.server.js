@@ -8,12 +8,13 @@ async function render(pageContext) {
   const { Page } = pageContext;
   const { app, appLoading, router } = createApp({ Page });
   // set the router to the desired URL before rendering
+  console.info("req", pageContext.urlPathname, router.getRoutes().length);
   router.push(pageContext.urlPathname);
   await router.isReady();
-  const appHtml = await renderToString(app, {});
+  const appHtml = await renderToString(app);
   //const appLoadingHtml = await renderToString(appLoading, {});
 
-  console.info("send", appHtml);
+  console.info("send<", appHtml, ">");
   return escapeInject`<!DOCTYPE html>
     <html>
       <body>

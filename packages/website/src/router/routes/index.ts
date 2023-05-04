@@ -1,16 +1,5 @@
-//import { getLoginModuleRegExp } from "@/utils";
+import { getLoginModuleRegExp } from "@/utils";
 //import video from "./video";
-
-export function getLoginModuleRegExp() {
-  const modules: UnionKey.LoginModule[] = [
-    "pwd-login", //
-    "code-login",
-    "register",
-    "reset-pwd",
-    "bind-wechat",
-  ];
-  return modules.join("|");
-}
 
 /** 根路由: / */
 export const ROOT_ROUTE: AuthRoute.Route = {

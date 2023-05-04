@@ -93,8 +93,9 @@ export const useRouteStore = defineStore("route-store", {
      * @param routes - 权限路由
      */
     handleAuthRoute(routes: AuthRoute.Route[]) {
-      (this.menus as App.GlobalMenuOption[]) = transformAuthRouteToMenu(routes);
-      locale(this.menus);//本地化
+      let useMenu = filterAuthRouteNoAuth(routes);
+      (this.menus as App.GlobalMenuOption[]) = transformAuthRouteToMenu(useMenu);
+      locale(this.menus); //本地化
       this.searchMenus = transformAuthRouteToSearchMenus(routes);
 
       const vueRoutes = transformAuthRouteToVueRoutes(routes);
@@ -146,10 +147,6 @@ export const useRouteStore = defineStore("route-store", {
       const { initHomeTab } = useTabStore();
       const auth = useAuthStore();
       let sroutes = staticRoutes;
-      console.info("routers",  sroutes);
-      if (!isLogin) {
-        sroutes = filterAuthRouteNoAuth(sroutes);
-      }
       let routes = filterAuthRoutesByUserPermission(sroutes, auth.userInfo.userRole);
 
       this.handleAuthRoute(routes);

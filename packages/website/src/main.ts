@@ -27,7 +27,7 @@ export function createApp({ Page }: { Page: any }) {
 
   // vue router
   const router = setupRouter(app);
-
+  if(!ssr) globalThis.router = router;
   setupI18n(app);
   /* 
   // mount app
