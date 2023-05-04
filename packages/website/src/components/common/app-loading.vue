@@ -32,11 +32,9 @@ const lodingClasses = [
 function addThemeColorCssVars() {
   const defaultColor = themeSettings.themeColor;
   const themeColor = localStg.get("themeColor") || defaultColor;
-
   const { r, g, b } = getRgbOfColor(themeColor);
-
   const cssVars = `--primary-color: ${r},${g},${b}`;
-  document.documentElement.style.cssText = cssVars;
+  if (!import.meta.env.SSR) globalThis.document.documentElement.style.cssText = cssVars;
 }
 
 addThemeColorCssVars();

@@ -146,6 +146,7 @@ export const useRouteStore = defineStore("route-store", {
       const { initHomeTab } = useTabStore();
       const auth = useAuthStore();
       let sroutes = staticRoutes;
+      console.info("routers",  sroutes);
       if (!isLogin) {
         sroutes = filterAuthRouteNoAuth(sroutes);
       }

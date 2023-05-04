@@ -23,9 +23,9 @@ export function handleModuleRoutes(modules: AuthRoute.RouteModule) {
     if (item) {
       if (item instanceof Array) {
         item.forEach((sitem) => {
-          routes.push(sitem);
+          sitem.path && routes.push(sitem);
         });
-      } else {
+      } else if (item.path) {
         routes.push(item);
       }
     } else {

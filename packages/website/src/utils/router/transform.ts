@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 import { getLayoutComponent, getViewComponent } from "./component";
+import { window } from "@/adapter";
 
 /**
  * 将权限路由转换成vue路由

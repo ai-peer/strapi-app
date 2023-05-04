@@ -9,12 +9,14 @@ import mock from "./mock";
 import visualizer from "./visualizer";
 import compress from "./compress";
 import pwa from "./pwa";
-//import ssr from "vite-plugin-ssr/plugin";
+import ssr from "vite-plugin-ssr/plugin";
 /**
  * vite插件
  * @param viteEnv - 环境变量配置
  */
 export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | PluginOption[])[] {
+  const isProd = viteEnv.VITE_SERVICE_ENV == "prod";
+  console.info("init plugins env", viteEnv.VITE_SERVICE_ENV);
   const plugins = [
     vue(), //
     vueJsx(),
@@ -24,9 +26,7 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
     progress(),
     pageRoute(),
   ];
-  if (viteEnv.PROD) {
-    //plugins.push(ssr());
-  }
+
   if (viteEnv.VITE_VISUALIZER === "Y") {
     plugins.push(visualizer as any as PluginOption);
   }
@@ -36,6 +36,8 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
   if (viteEnv.VITE_PWA === "Y" || viteEnv.VITE_VERCEL === "Y") {
     plugins.push(pwa());
   }
-
+  if (isProd) {
+    plugins.push(ssr());
+  }
   return plugins;
 }

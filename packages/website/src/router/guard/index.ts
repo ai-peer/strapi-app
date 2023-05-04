@@ -1,7 +1,7 @@
 import type { Router } from "vue-router";
 import { useTitle } from "@vueuse/core";
 import { createPermissionGuard } from "./permission";
-
+import { window } from "@/adapter";
 /**
  * 路由守卫函数
  * @param router - 路由实例

@@ -12,5 +12,5 @@ let modules: { [key: string]: any } = {};
 }
 addModules(about, dashboard); */
 modules = import.meta.glob("./**/*.ts", { eager: true }) as AuthRoute.RouteModule;
-console.info("===========handleModuleRoutes", utils.handleModuleRoutes, utils, import.meta.env.MODE, import.meta.env.SSR);
+//console.info("===========handleModuleRoutes", utils.handleModuleRoutes, utils, import.meta.env.MODE, import.meta.env.SSR);
 export const routes = utils.handleModuleRoutes(modules);

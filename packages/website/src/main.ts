@@ -1,24 +1,24 @@
 import * as vue from "vue";
-import App from "./App.vue";
 import AppLoading from "./components/common/app-loading.vue";
 import { setupDirectives } from "./directives";
 import { setupRouter } from "./router";
 import { setupAssets } from "./plugins";
 import { setupStore } from "./store";
 import { setupI18n } from "./locales";
-console.info("==== env ssr", import.meta.env.SSR, "isdev=" + import.meta.env.DEV);
-const isDev = import.meta.env.DEV;
-export function createApp() {
+export function createApp({ Page }: { Page: any }) {
+  const ssr = import.meta.env.SSR;
+  const isDev = import.meta.env.DEV;
+  console.info("==== env ssr", import.meta.env.SSR, "isdev=" + import.meta.env.DEV);
   // import assets: js、css
   setupAssets();
+/*   if (!ssr) {
+    const appLoading = vue.createApp(AppLoading);
+    appLoading.mount("#appLoading");
+  } */
+  const appLoading =  ssr ? vue.createSSRApp(AppLoading) : vue.createApp(AppLoading);
+  //appLoading.mount("#appLoading");
 
-  // app loading
-  const appLoading = vue.createApp(AppLoading);
-
-  appLoading.mount("#appLoading");
-
-  const app = isDev ? vue.createApp(App) : vue.createSSRApp(App);
-
+  const app = ssr ? vue.createSSRApp(Page) : vue.createApp(Page);
   // store plugin: pinia
   setupStore(app);
 
@@ -36,6 +36,7 @@ export function createApp() {
   }); */
   return {
     app,
+    appLoading,
     router,
   };
 }
