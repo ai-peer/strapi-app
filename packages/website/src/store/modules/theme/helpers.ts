@@ -16,7 +16,7 @@ export function initThemeSettings() {
   const themeColor = localStg.get("themeColor") || themeSetting.themeColor;
   const info = themeSetting.isCustomizeInfoColor ? themeSetting.otherColor.info : getColorPalette(themeColor, 7);
   const otherColor = { ...themeSetting.otherColor, info };
-  const setting = cloneDeep({ ...themeSetting, themeColor, otherColor });
+  const setting = cloneDeep({ ...themeSetting, themeColor, otherColor, inSSR: import.meta.env.SSR });
   return setting;
 }
 

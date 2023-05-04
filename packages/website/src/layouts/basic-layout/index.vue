@@ -18,7 +18,7 @@
     :right-footer="theme.footer.right"
   >
     <template #header>
-      <global-header v-if="!app.inSSR" v-bind="headerProps" />
+      <global-header v-bind="headerProps" />
     </template>
     <template #tab>
       <global-tab v-if="!app.inSSR"/>
