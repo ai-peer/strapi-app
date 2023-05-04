@@ -8,7 +8,7 @@ import { setupI18n } from "./locales";
 export function createApp({ Page }: { Page: any }) {
   const ssr = import.meta.env.SSR;
   const isDev = import.meta.env.DEV;
-  console.info("==== env ssr", import.meta.env.SSR, "isdev=" + import.meta.env.DEV);
+  //console.info("==== env ssr", import.meta.env.SSR, "isdev=" + import.meta.env.DEV);
   // import assets: js、css
   setupAssets();
 /*   if (!ssr) {

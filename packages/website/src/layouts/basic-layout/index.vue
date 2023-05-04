@@ -24,11 +24,11 @@
       <global-tab v-if="!app.inSSR"/>
     </template>
     <template #sider>
-      <global-sider v-if="!app.inSSR"/>
+      <global-sider/>
     </template>
     <global-content />
     <template #footer>
-      <global-footer v-if="!app.inSSR"/>
+      <global-footer/>
     </template>
   </admin-layout>
   <n-back-top :key="theme.scrollMode" :listen-to="`#${app.scrollElId}`" class="z-100" />

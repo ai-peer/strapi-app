@@ -42,7 +42,7 @@ export const useAppStore = defineStore("app-store", {
   }),
   actions: {
     async init() {
-      console.info("==========app init============", localStg.get("token"));
+      //console.info("==========app init============");
       const isLogin = Boolean(localStg.get("token"));
       this.isLogin = isLogin;
       this.inSSR = import.meta.env.SSR;
