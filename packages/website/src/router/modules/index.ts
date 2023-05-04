@@ -1,6 +1,7 @@
-import { handleModuleRoutes } from "@/utils";
-import about from "./about";
-import dashboard from "./dashboard";
+import * as utils from "@/utils/router";
+
+//import about from "./about";
+//import dashboard from "./dashboard";
 let modules: { [key: string]: any } = {};
 /* function addModules(...list: any[]) {
   list.forEach((module) => {
@@ -11,5 +12,5 @@ let modules: { [key: string]: any } = {};
 }
 addModules(about, dashboard); */
 modules = import.meta.glob("./**/*.ts", { eager: true }) as AuthRoute.RouteModule;
-
-export const routes = handleModuleRoutes(modules);
+console.info("===========handleModuleRoutes", utils.handleModuleRoutes, utils, import.meta.env.MODE, import.meta.env.SSR);
+export const routes = utils.handleModuleRoutes(modules);

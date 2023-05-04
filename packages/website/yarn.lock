@@ -9866,10 +9866,10 @@ vite-plugin-pwa@^0.14.7:
     workbox-build "^6.5.4"
     workbox-window "^6.5.4"
 
-vite-plugin-ssr@^0.4.121:
-  version "0.4.121"
-  resolved "https://registry.npmjs.org/vite-plugin-ssr/-/vite-plugin-ssr-0.4.121.tgz#b5911883a4cdb750613a0a0adf13325711f52c5a"
-  integrity sha512-6hJXWH8JAcBjRVwZeuI/yIk5gwJrdllZaBTBGXHH0Py0o0cJ1i8p7KZ3hht0SzY63pt0apekXKxnqW/brODung==
+vite-plugin-ssr@^0.4.122:
+  version "0.4.122"
+  resolved "https://registry.npmjs.org/vite-plugin-ssr/-/vite-plugin-ssr-0.4.122.tgz#b5fc697f32e185b2dc0c0201730f0c37b8567e5b"
+  integrity sha512-G01gmxiOB5ys/Jqrrv+wjtMr3ykQ7hzjdOCTCghIjgA7VdcQissv9Xqi5tRE6Q3BZ4Wv6/8LD8KMkx2/h4UM7A==
   dependencies:
     "@brillout/import" "0.2.3"
     "@brillout/json-serializer" "^0.5.3"
@@ -9971,9 +9971,9 @@ vue-tsc@^1.4.4:
     "@volar/vue-typescript" "1.6.1"
     semver "^7.3.8"
 
-vue@3.2.47:
+vue@^3.2.47:
   version "3.2.47"
-  resolved "https://registry.npmmirror.com/vue/-/vue-3.2.47.tgz#3eb736cbc606fc87038dbba6a154707c8a34cff0"
+  resolved "https://registry.npmjs.org/vue/-/vue-3.2.47.tgz#3eb736cbc606fc87038dbba6a154707c8a34cff0"
   integrity sha512-60188y/9Dc9WVrAZeUVSDxRQOZ+z+y5nO2ts9jWXSTkMvayiWxCWOWtBQoYjLeccfXkiiPZWAHcV+WTPhkqJHQ==
   dependencies:
     "@vue/compiler-dom" "3.2.47"

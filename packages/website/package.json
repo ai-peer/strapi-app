@@ -35,7 +35,7 @@
     "UnoCSS"
   ],
   "scripts": {
-    "ssr": "node server.js --experimental-modules ",
+    "ssr": "cross-env VITE_SERVICE_ENV=prod vite",
     "dev": "cross-env VITE_SERVICE_ENV=dev vite",
     "dev:test": "cross-env VITE_SERVICE_ENV=test vite",
     "dev:prod": "cross-env VITE_SERVICE_ENV=prod vite",
@@ -79,7 +79,8 @@
     "swiper": "^9.2.4",
     "ua-parser-js": "^1.0.35",
     "vditor": "^3.9.2",
-    "vue": "3.2.47",
+    "vite-plugin-ssr": "^0.4.122",
+    "vue": "^3.2.47",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6",
     "vuedraggable": "^4.1.0",
@@ -124,7 +125,6 @@
     "vite-plugin-mock": "2.9.8",
     "vite-plugin-progress": "^0.0.7",
     "vite-plugin-pwa": "^0.14.7",
-    "vite-plugin-ssr": "^0.4.121",
     "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^1.4.4"
   },
@@ -135,5 +135,10 @@
   },
   "lint-staged": {
     "*.{js,jsx,mjs,json,ts,tsx,vue}": "eslint . --fix"
+  },
+  "imports": {
+    "~/*": "./*",
+    "@/*": "./src/*",
+    "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js"
   }
 }

@@ -1,5 +1,11 @@
+console.info("load utils");
 export * from "./common";
 export * from "./storage";
 export * from "./service";
 export * from "./router";
 export * from "./form";
+export * as common from "./common";
+export * as storage from "./storage";
+export * as service from "./service";
+export * as router from "./router";
+export * as form from "./form";

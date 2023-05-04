@@ -1,3 +1,4 @@
+console.info("load router");
 export * from "./module";
 export * from "./helpers";
 export * from "./cache";
