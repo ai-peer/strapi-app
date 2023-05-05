@@ -37,14 +37,13 @@
 
 <script setup lang="ts">
 import { useAppStore, useThemeStore } from "@/store";
-const app = useAppStore();
-app.init();
 import { AdminLayout } from "@soybeanjs/vue-materials";
 import { useBasicLayout } from "@/composables";
 import { GlobalContent, GlobalFooter, GlobalHeader, GlobalSider, GlobalTab, SettingDrawer } from "../common";
 
 defineOptions({ name: "BasicLayout" });
 
+const app = useAppStore();
 const theme = useThemeStore();
 const { mode, headerProps, siderVisible, siderWidth, siderCollapsedWidth } = useBasicLayout();
 

@@ -1,22 +1,51 @@
 <template>
   <div>
-    <router-view v-slot="{ Component }">
+    <router-view v-if="ssr" v-slot="{ Component }">
       <Suspense>
         <component :is="Component" />
       </Suspense>
     </router-view>
+    <n-config-provider
+      v-else
+      :theme="page.theme.naiveTheme"
+      :theme-overrides="page.theme.naiveThemeOverrides"
+      class="h-full"
+      :locale="zhCN"
+      :date-locale="dateZhCN"
+    >
+      <naive-provider>
+        <router-view v-slot="{ Component }">
+          <Suspense>
+            <component :is="Component" />
+          </Suspense>
+        </router-view>
+      </naive-provider>
+    </n-config-provider>
+    <!--router-view v-slot="{ Component }">
+      <Suspense>
+        <component :is="Component" />
+      </Suspense>
+    </router-view-->
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 const ssr = import.meta.env.SSR;
+import { dateZhCN, zhCN } from "naive-ui";
+
+const page = ref({
+  theme: <any>{},
+});
+
 if (!ssr) {
   (async () => {
-    const { useGlobalEvents } = await import("@/composables");
-    useGlobalEvents();
     const { subscribeStore, useThemeStore } = await import("@/store");
     subscribeStore();
-    useThemeStore();
+    const theme = useThemeStore();
+    page.value.theme = theme;
+    const { useGlobalEvents } = await import("@/composables");
+    useGlobalEvents();
   })();
 }
 </script>

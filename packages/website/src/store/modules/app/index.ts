@@ -37,17 +37,10 @@ export const useAppStore = defineStore("app-store", {
     mixSiderFixed: false,
     lang: lang,
     langs: langList,
-    isLogin: false,
-    inSSR: false,
+    isLogin: Boolean(localStg.get("token")),
+    inSSR: import.meta.env.SSR,
   }),
   actions: {
-    async init() {
-      //console.info("==========app init============");
-      const isLogin = Boolean(localStg.get("token"));
-      this.isLogin = isLogin;
-      this.inSSR = import.meta.env.SSR;
-      this.setLang(lang, langList);
-    },
     setLang(lang: string = navigator.language) {
       this.lang = lang;
       localStg.set("lang", lang);
