@@ -16,19 +16,20 @@
     :footer-visible="theme.footer.visible"
     :fixed-footer="theme.footer.fixed"
     :right-footer="theme.footer.right"
+    :style="initStyle"
   >
     <template #header>
       <global-header v-bind="headerProps" />
     </template>
     <template #tab>
-      <global-tab v-if="!app.inSSR"/>
+      <global-tab v-if="!app.inSSR" />
     </template>
     <template #sider>
-      <global-sider/>
+      <global-sider />
     </template>
     <global-content />
     <template #footer>
-      <global-footer/>
+      <global-footer />
     </template>
   </admin-layout>
   <n-back-top :key="theme.scrollMode" :listen-to="`#${app.scrollElId}`" class="z-100" />
@@ -36,18 +37,24 @@
 </template>
 
 <script setup lang="ts">
+import { ref, defineComponent, onMounted, getCurrentInstance } from "vue";
 import { useAppStore, useThemeStore } from "@/store";
 import { AdminLayout } from "@soybeanjs/vue-materials";
 import { useBasicLayout } from "@/composables";
 import { GlobalContent, GlobalFooter, GlobalHeader, GlobalSider, GlobalTab, SettingDrawer } from "../common";
-
+const initStyle = ref({
+  visibility: "hidden",
+});
 defineOptions({ name: "BasicLayout" });
+
+onMounted(() => {
+  // getCurrentInstance();
+  initStyle.value.visibility = "visible";
+});
 
 const app = useAppStore();
 const theme = useThemeStore();
 const { mode, headerProps, siderVisible, siderWidth, siderCollapsedWidth } = useBasicLayout();
-
-
 </script>
 
 <style lang="scss">

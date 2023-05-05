@@ -12,11 +12,12 @@ async function render(pageContext) {
   router.push(pageContext.urlPathname);
   await router.isReady();
   const appHtml = await renderToString(app);
-  //const appLoadingHtml = await renderToString(appLoading, {});
+  const appLoadingHtml = await renderToString(appLoading, {});
   return escapeInject`<!DOCTYPE html>
     <html>
       <body>
         <div id="app">
+          ${dangerouslySkipEscape(appLoadingHtml)}
           ${dangerouslySkipEscape(appHtml)}
         </div>
       </body>

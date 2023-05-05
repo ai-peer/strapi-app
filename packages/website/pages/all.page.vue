@@ -1,32 +1,30 @@
 <template>
-  <div>
-    <router-view v-if="ssr" v-slot="{ Component }">
-      <Suspense>
-        <component :is="Component" />
-      </Suspense>
-    </router-view>
-    <n-config-provider
-      v-else
-      :theme="page.theme.naiveTheme"
-      :theme-overrides="page.theme.naiveThemeOverrides"
-      class="h-full"
-      :locale="zhCN"
-      :date-locale="dateZhCN"
-    >
-      <naive-provider>
-        <router-view v-slot="{ Component }">
-          <Suspense>
-            <component :is="Component" />
-          </Suspense>
-        </router-view>
-      </naive-provider>
-    </n-config-provider>
-    <!--router-view v-slot="{ Component }">
+  <router-view v-if="ssr" v-slot="{ Component }">
+    <Suspense>
+      <component :is="Component" class="h-full" />
+    </Suspense>
+  </router-view>
+  <n-config-provider
+    v-else
+    :theme="page.theme.naiveTheme"
+    :theme-overrides="page.theme.naiveThemeOverrides"
+    class="h-full"
+    :locale="zhCN"
+    :date-locale="dateZhCN"
+  >
+    <naive-provider>
+      <router-view v-slot="{ Component }">
+        <Suspense>
+          <component :is="Component" />
+        </Suspense>
+      </router-view>
+    </naive-provider>
+  </n-config-provider>
+  <!--router-view v-slot="{ Component }">
       <Suspense>
         <component :is="Component" />
       </Suspense>
     </router-view-->
-  </div>
 </template>
 
 <script setup lang="ts">
