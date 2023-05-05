@@ -30,14 +30,15 @@ export const useThemeStore = defineStore("theme-store", {
     },
     /** 缓存主题配置 */
     cacheThemeSettings() {
-      const isProd = import.meta.env.PROD;
-      if (isProd) {
-        localStg.set("themeSettings", this.$state);
-      }
+      //const isProd = import.meta.env.PROD;
+      //if (isProd) {
+      localStg.set("themeSettings", this.$state);
+      //}
     },
     /** 设置暗黑模式 */
     setDarkMode(darkMode: boolean) {
       this.darkMode = darkMode;
+      this.cacheThemeSettings();
     },
     /** 设置自动跟随系统主题 */
     setFollowSystemTheme(visible: boolean) {

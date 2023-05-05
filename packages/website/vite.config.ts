@@ -39,7 +39,8 @@ export default defineConfig((configEnv) => {
     },
     optimizeDeps: {
       include: [
-        //"vue",
+        "vue",
+        "naive-ui",
         "@antv/data-set",
         "@antv/g2",
         "@better-scroll/core",

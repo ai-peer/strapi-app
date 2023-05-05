@@ -13,4 +13,4 @@ let modules: { [key: string]: any } = {};
 addModules(about, dashboard); */
 modules = import.meta.glob("./**/*.ts", { eager: true }) as AuthRoute.RouteModule;
 export const routes = utils.handleModuleRoutes(modules);
-import.meta.env.SSR || console.info("routers", routes, modules);
+//import.meta.env.SSR || console.info("routers", routes, modules);

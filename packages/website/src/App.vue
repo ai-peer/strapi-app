@@ -18,9 +18,11 @@ import { subscribeStore, useThemeStore } from "@/store";
 import { useGlobalEvents } from "@/composables";
 
 const theme = useThemeStore();
-
-subscribeStore();
-useGlobalEvents();
+console.info("========>theme", theme.darkMode, theme.inSSR);
+if (!theme.inSSR) {
+  subscribeStore();
+  useGlobalEvents();
+}
 </script>
 
 <style scoped></style>
