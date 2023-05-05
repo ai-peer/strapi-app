@@ -1,7 +1,6 @@
 import { renderToString } from "@vue/server-renderer";
 import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr/server";
 import { createApp } from "@/main";
-
 export { render };
 
 async function render(pageContext) {
@@ -9,14 +8,7 @@ async function render(pageContext) {
   const { app, appLoading, router } = createApp({ Page });
   // set the router to the desired URL before rendering
 
-/*   console.info(
-    "req",
-    pageContext.urlPathname,
-    router.getRoutes().length,
-    router.getRoutes().map((v) => {
-      return { name: v.name, path: v.path };
-    }),
-  ); */
+  console.info("req", pageContext.urlPathname, pageContext, router.getRoutes().length);
   router.push(pageContext.urlPathname);
   await router.isReady();
   const appHtml = await renderToString(app);
