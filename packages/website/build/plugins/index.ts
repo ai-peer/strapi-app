@@ -11,6 +11,7 @@ import visualizer from "./visualizer";
 import compress from "./compress";
 import pwa from "./pwa";
 import ssr from "vite-plugin-ssr/plugin";
+import { viteStaticCopy } from "vite-plugin-static-copy"; //引入插件
 
 /**
  * vite插件
@@ -71,7 +72,19 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
     plugins.push(pwa());
   }
   if (isProd) {
+    console.info("====== enable ssr =======");
     plugins.push(ssr());
   }
+  plugins.push(
+    viteStaticCopy({
+      targets: [
+        {
+          src: "package.dist.json",
+          dest: "../",
+          rename: "package.json"
+        },
+      ],
+    }),
+  ); 
   return plugins;
 }

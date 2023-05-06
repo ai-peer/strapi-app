@@ -11,7 +11,7 @@
         ></div>
       </div>
     </div>
-    <h2 class="text-28px font-500 text-#646464">{{ title }}</h2>
+    <h2 class="text-28px font-500 text-#646464">{{ title }} ...</h2>
   </div>
 </template>
 

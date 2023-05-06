@@ -15,11 +15,25 @@ export default defineConfig((configEnv) => {
   return {
     base: viteEnv.VITE_BASE_URL,
     resolve: {
-      alias: {
+      /*       alias: {
         "~": rootPath,
         "@": srcPath,
         "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js",
-      },
+      }, */
+      alias: [
+        {
+          find: "~",
+          replacement: rootPath,
+        },
+        {
+          find: "@",
+          replacement: srcPath,
+        },
+        {
+          find: "vue-i18n",
+          replacement: "vue-i18n/dist/vue-i18n.cjs.js",
+        },
+      ],
     },
     define: viteDefine,
     plugins: setupVitePlugins(viteEnv),
@@ -53,11 +67,31 @@ export default defineConfig((configEnv) => {
       ],
     },
     build: {
+      //target: "modules",
+      outDir: "dist",
+      //publicDir: "public",
+      minify: false,
+      cssMinify: true,
+      manifest: true,
+      ssrManifest: true,
       reportCompressedSize: false,
       sourcemap: false,
       commonjsOptions: {
         ignoreTryCatch: false,
+        ignoreGlobal: true,
+        transformMixedEsModules: true,
+        esmExternals: true,
+        defaultIsModuleExports: false,
+        sourceMap: false,
+        //include: [/node_modules/],
+        //extensions: [".js", ".cjs", ".mjs"],
       },
+      /*    modulePreload: {
+        polyfill: true,
+        resolveDependencies: (url: string, deps: string[], { hostId, hostType }) => {
+          return deps.filter((dep) => ["vue", "vue-router", "pinia", "naive-ui"].includes(dep));
+        }, 
+      },*/
     },
   };
 });
