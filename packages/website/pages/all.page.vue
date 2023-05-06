@@ -5,7 +5,7 @@
     </Suspense>
   </router-view>
   <n-config-provider
-    v-else
+    v-if="!ssr"
     :theme="page.theme.naiveTheme"
     :theme-overrides="page.theme.naiveThemeOverrides"
     class="h-full"
@@ -20,11 +20,6 @@
       </router-view>
     </naive-provider>
   </n-config-provider>
-  <!--router-view v-slot="{ Component }">
-      <Suspense>
-        <component :is="Component" />
-      </Suspense>
-    </router-view-->
 </template>
 
 <script setup lang="ts">

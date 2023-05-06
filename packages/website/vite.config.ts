@@ -47,7 +47,7 @@ export default defineConfig((configEnv) => {
     server: {
       https: false,
       host: "0.0.0.0",
-      port: 3200,
+      port: 3000,
       open: false,
       proxy: createViteProxy(isOpenProxy, envConfig),
     },
@@ -78,9 +78,9 @@ export default defineConfig((configEnv) => {
       sourcemap: false,
       commonjsOptions: {
         ignoreTryCatch: false,
-        ignoreGlobal: true,
+        //ignoreGlobal: true,
         transformMixedEsModules: true,
-        esmExternals: true,
+        esmExternals: false,
         defaultIsModuleExports: false,
         sourceMap: false,
         //include: [/node_modules/],

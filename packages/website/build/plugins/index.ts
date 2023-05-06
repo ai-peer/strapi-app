@@ -73,7 +73,11 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
   }
   if (isProd) {
     console.info("====== enable ssr =======");
-    plugins.push(ssr());
+    plugins.push(ssr({
+      prerender: {
+        
+      }
+    }));
   }
   plugins.push(
     viteStaticCopy({
