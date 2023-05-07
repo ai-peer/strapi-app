@@ -6,9 +6,9 @@ export { render };
 console.info("env", import.meta.env.MODE);
 
 async function render(pageContext) {
-  const { Page } = pageContext;
-  const { app, appLoading, router } = createApp({ Page });
-  // set the router to the desired URL before rendering
+  const { Page, urlPathname } = pageContext;
+  console.info("req", urlPathname);
+  const { app, appLoading, router } = createApp({ Page: Page });
   router.push(pageContext.urlPathname);
   await router.isReady();
   const appHtml = await renderToString(app);

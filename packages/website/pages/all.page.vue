@@ -24,9 +24,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { naiveui } from "@/utils/vuehelper";
 const ssr = import.meta.env.SSR;
 import { dateZhCN, zhCN } from "naive-ui";
-
+const NConfigProvider = naiveui("NConfigProvider");
 const page = ref({
   theme: <any>{},
 });

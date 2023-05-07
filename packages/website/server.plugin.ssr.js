@@ -3,10 +3,10 @@
 
 // 在此例子中我们使用 Express.js，
 // 但我们也可使用任意其他服务端框架
-const express = require("express");
-const path = require("path");
-const { renderPage } = require("vite-plugin-ssr/server");
-const { createServer: createSSRServer } = require("vite");
+import express from "express";
+import path from "path";
+import { renderPage } from "vite-plugin-ssr/server";
+import { createServer as createSSRServer } from "vite";
 const isProduction = true; // = process.env.NODE_ENV === "production";
 const root = path.resolve();
 
@@ -14,7 +14,6 @@ startServer();
 
 async function startServer() {
   const app = express();
-  console.info("===isProduction", isProduction);
   if (isProduction) {
     app.use(express.static(`${root}/dist/client`));
   } else {

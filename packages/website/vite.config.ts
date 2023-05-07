@@ -61,10 +61,14 @@ export default defineConfig((configEnv) => {
         "echarts",
         "swiper",
         "swiper/vue",
-        "vditor",
-        "wangeditor",
-        "xgplayer",
+        //"vditor",
+        //"wangeditor",
+        //"xgplayer",
       ],
+    },
+    ssr: {
+      //external: ["naive-ui"],
+      //format: "cjs"
     },
     build: {
       //target: "modules",
@@ -72,8 +76,9 @@ export default defineConfig((configEnv) => {
       //publicDir: "public",
       minify: false,
       cssMinify: true,
-      manifest: true,
+      //manifest: true,
       ssrManifest: true,
+      //ssr: true,
       reportCompressedSize: false,
       sourcemap: false,
       commonjsOptions: {
@@ -81,7 +86,7 @@ export default defineConfig((configEnv) => {
         //ignoreGlobal: true,
         transformMixedEsModules: true,
         esmExternals: false,
-        defaultIsModuleExports: false,
+        //defaultIsModuleExports: false,
         sourceMap: false,
         //include: [/node_modules/],
         //extensions: [".js", ".cjs", ".mjs"],

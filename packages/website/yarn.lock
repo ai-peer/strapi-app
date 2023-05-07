@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ai-lion/vite-plugin-vue-page-route@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@ai-lion/vite-plugin-vue-page-route/-/vite-plugin-vue-page-route-1.0.2.tgz#ba5336ea822e98bab9f26c70190083d9fe2c11ee"
-  integrity sha512-hYREBLo0f6S/+z5u513kDeW54uHw8X2LmIYnogEqtr0687kDKfQg++RXysqzl2sIsYd3EQs/R37WWUU8abWhjA==
+"@ai-lion/vite-plugin-vue-page-route@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@ai-lion/vite-plugin-vue-page-route/-/vite-plugin-vue-page-route-1.0.3.tgz#e7889a0f1beb33c4781f2b9988ed7f543f4dd609"
+  integrity sha512-ZidOf+wK1fXbMKzVh7ClH5aIPq4mqx5FZfHRSy3DlCg6fFE4T5RpzczPkdPnJwSON+LlvNtTKuGz73VNntxugw==
   dependencies:
     "@swc/core" "^1.3.26"
     "@types/fs-extra" "^11.0.1"
@@ -9896,10 +9896,10 @@ vite-plugin-pwa@^0.14.7:
     workbox-build "^6.5.4"
     workbox-window "^6.5.4"
 
-vite-plugin-ssr@^0.4.122:
-  version "0.4.122"
-  resolved "https://registry.npmjs.org/vite-plugin-ssr/-/vite-plugin-ssr-0.4.122.tgz#b5fc697f32e185b2dc0c0201730f0c37b8567e5b"
-  integrity sha512-G01gmxiOB5ys/Jqrrv+wjtMr3ykQ7hzjdOCTCghIjgA7VdcQissv9Xqi5tRE6Q3BZ4Wv6/8LD8KMkx2/h4UM7A==
+vite-plugin-ssr@^0.4.123:
+  version "0.4.123"
+  resolved "https://registry.npmjs.org/vite-plugin-ssr/-/vite-plugin-ssr-0.4.123.tgz#52c0aa757e12c810fb0645950d11207f9c040062"
+  integrity sha512-lIHmvsS7xINxk8AiMn9O9q6dTeLDay0q3iRCMZd4MlzhyMcEUUuEYyx/vWevXIO7+CTt5cOVcTsojeAU+eUMNw==
   dependencies:
     "@brillout/import" "0.2.3"
     "@brillout/json-serializer" "^0.5.3"

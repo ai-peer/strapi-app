@@ -4,7 +4,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import unocss from "@unocss/vite";
 import progress from "vite-plugin-progress";
 //import pageRoute from "@soybeanjs/vite-plugin-vue-page-route";
-import pageRoute from "@ai-lion/vite-plugin-vue-page-route";
+import { pageRoute } from "@ai-lion/vite-plugin-vue-page-route";
 import unplugin from "./unplugin";
 import mock from "./mock";
 import visualizer from "./visualizer";
@@ -12,7 +12,7 @@ import compress from "./compress";
 import pwa from "./pwa";
 import ssr from "vite-plugin-ssr/plugin";
 import { viteStaticCopy } from "vite-plugin-static-copy"; //引入插件
-
+import os from "os";
 /**
  * vite插件
  * @param viteEnv - 环境变量配置
@@ -20,13 +20,13 @@ import { viteStaticCopy } from "vite-plugin-static-copy"; //引入插件
 export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | PluginOption[])[] {
   const isProd = viteEnv.VITE_SERVICE_ENV == "prod";
   console.info("init plugins env", viteEnv.VITE_SERVICE_ENV);
-  const plugins = [
+  const plugins: any[] = [
     vue(), //
     vueJsx(),
     ...unplugin(viteEnv),
     unocss(),
     mock,
-    progress(),
+    //progress(),
     pageRoute({
       //
       pageDir: "src/views", // 默认
@@ -35,29 +35,8 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
       //routeModuleDir: "src/router/modules", // 默认
       //routeModuleExt: "ts", // 默认
       //routeModuleType: "AuthRoute.Route", // 默认
-      /**
-       * @example _builtin_login => login
-       */
       //name.replace(/^_([a-zA-Z]|[0-9]|$)+_*/, ""), // 默认
-      /**
-       * 路由懒加载
-       * @param name 路由名称
-       * @example
-       * - 直接导入
-       * ```ts
-       * import Home from './views/home/index.vue';
-       * ```
-       * - 懒加载导入
-       * ```ts
-       * const Home = import('./views/home/index.vue');
-       * ```
-       */
       lazyImport: (_name) => true, // 默认
-      /**
-       * 是否生成路由模块
-       * @param name 未转换过的路由名称(没有调用函数routeNameTansformer)
-       * @returns 是否生成路由模块的代码
-       */
       //onRouteModuleGenerate: (name) => !name.includes("_builtin"), // 对于系统内置路由不生成路由模块, 其他的都生成
     }),
   ];
@@ -73,22 +52,44 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
   }
   if (isProd) {
     console.info("====== enable ssr =======");
-    plugins.push(ssr({
-      prerender: {
-        
-      }
-    }));
+    plugins.push(
+      ssr({
+        prerender: {
+          parallel: Math.max(os.cpus.length - 1, 1),
+        },
+        includeAssetsImportedByServer: true,
+      }),
+    );
   }
   plugins.push(
     viteStaticCopy({
       targets: [
         {
-          src: "package.dist.json",
+          src: "package.json",
           dest: "../",
-          rename: "package.json"
+          rename: "package.json",
+          transform: (content: string, filename: string) => {
+            content = content.replace(/"author":\s*\{[^\}]+\}\s*,/, "");
+            content = content.replace(
+              /"scripts":\s*\{[^\}]+\}\s*,/,
+              `"script": { "start": "cross-env VITE_SERVICE_ENV=prod NODE_ENV=production  node server.js" },`,
+            );
+            content = content.replace(/"devDependencies":\s*\{[^\}]+\}\s*,/, "");
+            content = content.replace(/"pnpm":\s*\{[^\}]+\}\s*,/, "");
+            content = content.replace(/"lint-staged":\s*\{[^\}]+\}\s*,/, "");
+            return content;
+          },
+        },
+        {
+          src: "server.js",
+          dest: "../",
+          transform: (content, file) => {
+            content = content.replace("dist/client", "client");
+            return content;
+          },
         },
       ],
     }),
-  ); 
+  );
   return plugins;
 }
