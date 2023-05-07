@@ -36,7 +36,7 @@
     "UnoCSS"
   ],
   "scripts": {
-    "start": "cross-env VITE_SERVICE_ENV=prod NODE_ENV=production  node server.js",
+    "start": "cross-env VITE_SERVICE_ENV=prod NODE_ENV=production node server.js",
     "ssr": "cross-env VITE_SERVICE_ENV=prod vite",
     "dev": "cross-env VITE_SERVICE_ENV=dev vite",
     "dev:test": "cross-env VITE_SERVICE_ENV=test vite",

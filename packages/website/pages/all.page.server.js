@@ -3,11 +3,10 @@ import { escapeInject, dangerouslySkipEscape } from "vite-plugin-ssr/server";
 import { createApp } from "@/main";
 export { render };
 
-console.info("env", import.meta.env.MODE);
+console.info("env", import.meta.env.MODE, import.meta.env.SSR);
 
 async function render(pageContext) {
   const { Page, urlPathname } = pageContext;
-  console.info("req", urlPathname);
   const { app, appLoading, router } = createApp({ Page: Page });
   router.push(pageContext.urlPathname);
   await router.isReady();
