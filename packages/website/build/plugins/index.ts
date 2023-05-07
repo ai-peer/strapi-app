@@ -19,13 +19,13 @@ import os from "os";
  */
 export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | PluginOption[])[] {
   const isProd = viteEnv.VITE_SERVICE_ENV == "prod";
+  const isDev = viteEnv.VITE_SERVICE_ENV == "dev";
   console.info("init plugins env", viteEnv.VITE_SERVICE_ENV);
   const plugins: any[] = [
     vue(), //
     vueJsx(),
     ...unplugin(viteEnv),
     unocss(),
-    mock,
     //progress(),
     pageRoute({
       //
@@ -40,7 +40,9 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
       //onRouteModuleGenerate: (name) => !name.includes("_builtin"), // 对于系统内置路由不生成路由模块, 其他的都生成
     }),
   ];
-
+  if (isDev) {
+    plugins.push(mock);
+  }
   if (viteEnv.VITE_VISUALIZER === "Y") {
     plugins.push(visualizer as any as PluginOption);
   }

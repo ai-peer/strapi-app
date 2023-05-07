@@ -16,7 +16,6 @@
     :footer-visible="theme.footer.visible"
     :fixed-footer="theme.footer.fixed"
     :right-footer="theme.footer.right"
-    :style="initStyle"
   >
     <template #header>
       <global-header v-bind="headerProps" />
@@ -48,8 +47,9 @@ const initStyle = ref({
 defineOptions({ name: "BasicLayout" });
 
 onMounted(() => {
-  // getCurrentInstance();
-  initStyle.value.visibility = "visible";
+  setTimeout(() => {
+    initStyle.value.visibility = "visible";
+  }, 1000);
 });
 
 const app = useAppStore();
