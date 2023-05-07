@@ -52,7 +52,7 @@ export function setupVitePlugins(viteEnv: ImportMetaEnv): (PluginOption | Plugin
   if (viteEnv.VITE_PWA === "Y" || viteEnv.VITE_VERCEL === "Y") {
     plugins.push(pwa());
   }
-  if (isProd) {
+  if (viteEnv.VITE_SSR == "Y") {
     console.info("====== enable ssr =======");
     plugins.push(
       ssr({

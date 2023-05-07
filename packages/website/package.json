@@ -36,12 +36,13 @@
     "UnoCSS"
   ],
   "scripts": {
-    "start": "cross-env VITE_SERVICE_ENV=prod NODE_ENV=production node server.js",
-    "ssr": "cross-env VITE_SERVICE_ENV=prod vite",
+    "start": "cross-env VITE_SERVICE_ENV=prod VITE_SSR=Y NODE_ENV=production node server.js",
+    "ssr": "cross-env VITE_SSR=Y vite",
     "dev": "cross-env VITE_SERVICE_ENV=dev vite",
+    "dev1": "cross-env VITE_SERVICE_ENV=prod vite",
     "dev:test": "cross-env VITE_SERVICE_ENV=test vite",
     "dev:prod": "cross-env VITE_SERVICE_ENV=prod vite",
-    "build": "npm run typecheck && cross-env VITE_SERVICE_ENV=prod vite build",
+    "build": "npm run typecheck && cross-env VITE_SERVICE_ENV=prod VITE_SSR=Y vite build",
     "build:dev": "npm run typecheck && cross-env VITE_SERVICE_ENV=dev vite build",
     "build:test": "npm run typecheck && cross-env VITE_SERVICE_ENV=test vite build",
     "build:vercel": "cross-env VITE_HASH_ROUTE=Y VITE_VERCEL=Y vite build",
