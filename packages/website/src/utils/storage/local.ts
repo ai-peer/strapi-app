@@ -64,3 +64,4 @@ function createLocalStorage<T extends StorageInterface.Local = StorageInterface.
 }
 
 export const localStg = createLocalStorage();
+globalThis.localStg = localStg;

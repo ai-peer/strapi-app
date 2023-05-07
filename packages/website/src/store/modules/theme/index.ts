@@ -6,7 +6,10 @@ import { getNaiveThemeOverrides, initThemeSettings } from "./helpers";
 type ThemeState = Theme.Setting;
 
 export const useThemeStore = defineStore("theme-store", {
-  state: (): ThemeState => initThemeSettings(),
+  state: (): ThemeState => {
+    let state = initThemeSettings();
+    return state;
+  },
   getters: {
     /** naiveUI的主题配置 */
     naiveThemeOverrides(state) {
@@ -53,6 +56,7 @@ export const useThemeStore = defineStore("theme-store", {
     /** 切换/关闭 暗黑模式 */
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
+      this.cacheThemeSettings();
     },
     /** 设置布局最小宽度 */
     setLayoutMinWidth(minWidth: number) {

@@ -42,3 +42,4 @@ function createSessionStorage<T extends StorageInterface.Session = StorageInterf
 }
 
 export const sessionStg = createSessionStorage();
+globalThis.sessionStg = sessionStg;
