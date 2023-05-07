@@ -15,12 +15,12 @@ async function render(pageContext) {
   return escapeInject`<!DOCTYPE html>
     <html>
       <body>
-        <div id="app">
-          <div style="position: fixed;width: 100%;height: 100%; left: 0;top: 0;">
-            <div style="display: flex;flex-wrap: wrap; justify-content: center;align-items: center; width:100%; height: 100%; text-align: center;">
-                <img src="/loading.gif" />
-            </div>
+        <div id="app-loading" style="position: fixed;width: 100%;height: 100%; left: 0;top: 0; z-index: 9999;background:#fff;">
+          <div style="display: flex;flex-wrap: wrap; justify-content: center;align-items: center; width:100%; height: 100%; text-align: center;">
+              <img src="/loading.gif" />
           </div>
+        </div>
+        <div id="app">
           ${dangerouslySkipEscape(appHtml)}
         </div>
       </body>

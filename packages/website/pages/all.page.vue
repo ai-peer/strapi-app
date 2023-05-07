@@ -1,7 +1,7 @@
 <template>
   <router-view v-if="ssr" v-slot="{ Component }">
     <Suspense>
-      <component :is="Component" class="h-full" :style="initStyle" />
+      <component :is="Component" class="h-full"  />
     </Suspense>
   </router-view>
   <n-config-provider
@@ -15,7 +15,7 @@
     <naive-provider>
       <router-view v-slot="{ Component }">
         <Suspense>
-          <component :is="Component" :style="initStyle" />
+          <component :is="Component"  />
         </Suspense>
       </router-view>
     </naive-provider>
@@ -28,16 +28,14 @@ import { ref, onMounted } from "vue";
 const ssr = import.meta.env.SSR;
 import { dateZhCN, zhCN } from "naive-ui";
 //const NConfigProvider = naiveui("NConfigProvider");
-const initStyle = ref({
-  visibility: "hidden",
-});
+
 const page = ref({
   theme: <any>{},
 });
 onMounted(() => {
-  setTimeout(() => {
-    initStyle.value.visibility = "visible";
-  }, 1000);
+  if (!ssr) {
+
+  }
 });
 
 if (!ssr) {
